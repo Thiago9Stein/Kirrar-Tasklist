@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Seletor Flexpro</title>
+    <link rel="stylesheet" href="../CSS/padroes.css">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/temas.css">
+</head>
+
+<body>
+    <div id="background">
+    </div>
+    <div id="menu" class="black_box">
+        <h1 id="titulo_modal">Menu</h1>
+        <button id="abrir_simob" class="botao_abrir">Abrir Simob</button>
+        <button id="abrir_temas" class="botao_abrir">Personalizar Tema</button>
+        <button id="abrir_tarefas" class="botao_abrir">Abrir Tarefas</button>
+    </div>
+
+    <div id="simob_modal" class="black_box">
+        <div id="conteudo_simob" class="white_box">
+            <h1 id="titulo_simob">Selecione a base:</h1>
+            <button id="fechar_simob" class="botao_fechar">X</button>
+            <div id="posicao_botoes">
+                <button id="botao_adm" class="botao_abrir">Abrir ADM</button>
+                <button id="botao_demo" class="botao_abrir">Abrir Demonstração</button>
+                <button id="botao_habiteto" class="botao_abrir">Abrir Habiteto</button>
+                <button id="botao_simob" class="botao_abrir">Abrir Simob</button>
+                <button id="botao_base_propria" class="botao_abrir">Outra Base</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="temas_modal" class="black_box">
+
+        <div id="conteudo_temas" class="white_box">
+            <h1 id="titulo_temas">Selecione suas cores:</h1>
+            <button id="fechar_temas" class="botao_fechar">X</button>
+
+            <div id="opcoes_cores">
+                <label for="cor_fundo">Cor de Fundo:</label>
+                <input type="color" id="cor_fundo">
+                <label for="cor_fechar">Cor de Botões Fechar:</label>
+                <input type="color" id="cor_fechar">
+                <label for="cor_destaque">Cor de Destaque:</label>
+                <input type="color" id="cor_destaque">
+                <button id="restaurar_tema_padrao" class="botao_abrir">Restaurar Cores Padrão</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="tarefas_modal" class="black_box">
+
+        <div id="conteudo_tarefas" class="white_box">
+            <h1 id="titulo_tarefas">Tarefas</h1>
+            <button id="fechar_tarefas" class="botao_fechar">X</button>
+
+            <div id="lista_tarefas">
+                <button id="expandir_tarefas_abertas" class="botao_expandir">Tarefas Abertas</button>
+                <button id="expandir_tarefas_concluidas" class="botao_expandir">Tarefas Concluídas</button>
+            </div>
+
+            <button id="nova_tarefa" class="botao_abrir">Nova Tarefa +</button>
+        </div>
+    </div>
+
+    <div id="tarefas_abertas" class="conteudo_expandido">
+
+    </div>
+    
+    <div id="tarefas_concluidas" class="conteudo_expandido">
+
+    </div>
+
+</body>
+
+<script src="../JS/elementos.js"></script>
+<script src="../JS/script.js"></script>
+
+</html>
