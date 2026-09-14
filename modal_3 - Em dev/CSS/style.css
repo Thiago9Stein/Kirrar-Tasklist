@@ -1,0 +1,235 @@
+/*Menu*/
+
+#background {
+    position: fixed;
+    margin: 0px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cor-destaque);
+}
+
+#menu {
+    display: flex;
+    flex-direction: column;
+
+    box-sizing: border-box;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+    
+    gap: 5px;
+    padding: 0px;
+
+    background-color: var(--cor-fundo);
+    border: 15px solid var(--cor-destaque);
+    border-radius: 20px;
+}
+
+#titulo_modal {
+    font-size: 75px;
+    font-weight: bold;
+    color: var(--cor-destaque);
+}
+
+#abrir_simob {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#abrir_temas {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#abrir_tarefas {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*Fim do Menu*/
+
+/*Modal de Simob*/
+
+#simob_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_simob {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 40%;
+    height: auto;
+    padding: 15px;
+}
+
+#titulo_simob {
+    margin-top: 0px;
+
+    font-size: 40px;
+    font-weight: bold;
+
+    color: var(--cor-destaque);
+}
+
+#fechar_simob {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    margin-left: auto;
+    
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#posicao_botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#botao_adm {
+    height: 30px;
+    font-weight: bold;
+}
+
+#botao_demo {
+    height: 30px;
+    font-weight: bold;
+}
+
+#botao_simob {
+    height: 30px;
+    font-weight: bold;
+}
+
+#botao_base_propria {
+    height: 30px;
+    font-weight: bold;
+}
+
+/*Fim do Modal Simob*/
+
+/*Modal Temas*/
+
+#temas_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_temas {
+    position: relative;
+}
+
+#titulo_temas {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--cor-destaque);
+}
+
+#opcoes_cores {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: var(--cor-destaque);
+}
+
+#fechar_temas {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    margin-left: auto;
+    
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/*Fim do Modal Temas*/
+
+/*Modal Tarefas*/
+
+#tarefas_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_tarefas {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: flex-start;
+
+    color: var(--cor-destaque);
+    height: auto;
+    min-height: 50%;
+    width: 70%;
+}
+
+#titulo_tarefas {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--cor-destaque);
+    margin-top: 10px;
+}
+
+#fechar_tarefas {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    margin-left: auto;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#nova_tarefa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    height: 30px;
+    font-weight: bold;
+}
+
+#lista_tarefas {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+}
+
+.coluna_tarefas {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+#expandir_tarefas_abertas,
+#expandir_tarefas_concluidas {
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
