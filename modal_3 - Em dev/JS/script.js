@@ -109,10 +109,10 @@ expandirTarefasAbertas.addEventListener('click', () => {
 
     if (tarefasAbertas.style.display !== 'flex') {
         tarefasAbertas.style.display = 'flex';
-        expandirTarefasAbertas.textContent = 'Tarefas Abertas ↑';
+        expandirTarefasAbertas.textContent = 'Tarefas Abertas ▲';
     } else {
         tarefasAbertas.style.display = 'none';
-        expandirTarefasAbertas.textContent = 'Tarefas Abertas ↓';
+        expandirTarefasAbertas.textContent = 'Tarefas Abertas ▼';
     }
 
 });
@@ -121,10 +121,10 @@ expandirTarefasConcluidas.addEventListener('click', () => {
 
     if (tarefasConcluidas.style.display !== 'flex') {
         tarefasConcluidas.style.display = 'flex';
-        expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ↑';
+        expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▲';
     } else {
         tarefasConcluidas.style.display = 'none';
-        expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ↓';
+        expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▼';
     }
 
 });
@@ -139,3 +139,56 @@ tarefasModal.addEventListener('click', (event) => {
     }
 });
 
+/*Cadastro de tarefa*/
+
+novaTarefa.addEventListener('click', () => {
+    cadastroTarefaModal.style.display = 'flex'
+    dataCriacaoTarefa.textContent = `Data de criação: ${dataAtual}`;
+    prioridadeTarefa[0].value = 'media'
+})
+
+function limparNotaCadastro () {
+    notaTarefa[0].value = ""
+    notaTarefa[1].value = ""
+}
+
+function limparTituloCadastro () {
+    nomeTarefa[0].value = ""
+    nomeTarefa[1].value = ""
+}
+
+function alternarCancelarCadastro () {
+    notaTarefa[0].style.display = 'none'
+    notaTarefa[1].style.display = 'none'
+    cancelarNota[0].style.display = 'none'
+    cancelarNota[1].style.display = 'none'
+    novaNota[0].style.display = 'block'
+    novaNota[1].style.display = 'block'
+}
+
+novaNota[0].addEventListener('click', () => {
+    notaTarefa[0].style.display = 'block'
+    novaNota[0].style.display = 'none'
+    cancelarNota[0].style.display = 'block'
+})
+
+cancelarNota[0].addEventListener('click', () => {
+    limparNotaCadastro()
+    alternarCancelarCadastro()
+})
+
+fecharCadastroTarefa.addEventListener('click', () => {
+    limparNotaCadastro()
+    limparTituloCadastro()
+    alternarCancelarCadastro()
+    cadastroTarefaModal.style.display = 'none'
+})
+
+cadastroTarefaModal.addEventListener('click', (event) =>{
+    if (event.target === cadastroTarefaModal) {
+        limparNotaCadastro()
+        limparTituloCadastro()
+        alternarCancelarCadastro()
+        cadastroTarefaModal.style.display = 'none'
+    }
+})

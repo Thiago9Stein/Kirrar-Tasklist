@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap'); 
+
+* {
+    font-family: 'Asap', sans-serif;
+}
+
 .black_box {
     position: fixed;
     margin: 0px;
@@ -39,12 +45,67 @@
     }
 }
 
+.botao_cancelar {
+    background-color: var(--cor-fundo);
+    color: var(--cor-fechar);
+    border: 3px solid var(--cor-fechar);
+    border-radius: 5px;
+
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: var(--cor-fechar);
+        color: var(--cor-fundo);
+        border: 3px solid var(--cor-fundo);
+        outline: 3px solid var(--cor-fechar);
+    }
+}
+
+.botao_editar {
+    background-color: var(--cor-fundo);
+    color: var(--cor-destaque);
+    border: 3px solid var(--cor-destaque);
+    border-radius: 50%;
+
+    font-weight: bold;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: var(--cor-destaque);
+        color: var(--cor-fundo);
+        border: 3px solid var(--cor-fundo);
+        outline: 3px solid var(--cor-destaque);
+    }
+
+}
+
+.botao_excluir {
+    background-color: var(--cor-fundo);
+    color: var(--cor-fechar);
+    border: 3px solid var(--cor-fechar);
+    border-radius: 50%;
+
+    font-weight: bold;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: var(--cor-fechar);
+        color: var(--cor-fundo);
+        border: 3px solid var(--cor-fundo);
+        outline: 3px solid var(--cor-fechar);
+    }
+
+}
+
 .botao_expandir {
     background-color: var(--cor-fundo);
     color: var(--cor-destaque);
     border: 3px solid var(--cor-destaque);
     border-radius: 5px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .conteudo_expandido {
@@ -78,6 +139,15 @@
     }
 }
 
+input[type="text"] {
+    border: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    color: var(--cor-destaque);
+    background-color: var(--cor-fundo);
+
+    cursor: pointer;
+}
+
 input[type="color"] {
     width: 100px;
     height: 30px;
@@ -85,4 +155,19 @@ input[type="color"] {
     border: 3px solid var(--cor-destaque);
 
     cursor: pointer;
+}
+
+select {
+    border: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    color: var(--cor-destaque);
+    background-color: var(--cor-fundo);
+}
+
+
+textarea {
+    border: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    color: var(--cor-destaque);
+    background-color: var(--cor-fundo);
 }

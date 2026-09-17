@@ -38,3 +38,37 @@ const expandirTarefasConcluidas = document.getElementById('expandir_tarefas_conc
 const tarefasAbertas = document.getElementById('tarefas_abertas');
 const tarefasConcluidas = document.getElementById('tarefas_concluidas');
 
+/*Cadastro de Tarefas*/
+
+const cadastroTarefaModal = document.getElementById('cadastro_tarefa_modal');
+const conteudoCadastroTarefa = document.getElementById('conteudo_cadastro_tarefa');
+const fecharCadastroTarefa = document.getElementById('fechar_cadastro_tarefa');
+const tarefaCadastradaModal = document.getElementById('tarefa_cadastrada_modal');
+const tarefaCadastradaConteudo = document.getElementById('tarefa_cadastrada_conteudo');
+const fecharTarefaCadastrada = document.getElementById('fechar_tarefa_cadastrada');
+
+const nomeTarefa = [
+    document.getElementById('nome_tarefa'),
+    document.getElementById('nome_tarefa_edicao')
+]
+const prioridadeTarefa = [
+    document.getElementById('prioridade_tarefa'),
+    document.getElementById('prioridade_tarefa_edicao')
+]
+const novaNota = [
+    document.getElementById('nova_nota'),
+    document.getElementById('nova_nota_edicao')
+];
+const notaTarefa = [
+    document.getElementById('nota_tarefa'),
+    document.getElementById('nota_tarefa_edicao')
+];
+const finalizarCadastroTarefa = document.getElementById('finalizar_cadastro_tarefa');
+
+const cancelarNota = [
+    document.getElementById('cancelar_nota'),
+    document.getElementById('cancelar_nota_edicao')
+];
+
+const dataAtual = new Date().toLocaleDateString('pt-BR');
+const dataCriacaoTarefa = document.getElementById('data_criacao_tarefa');

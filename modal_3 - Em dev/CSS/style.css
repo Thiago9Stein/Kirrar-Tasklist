@@ -182,8 +182,9 @@
 
     color: var(--cor-destaque);
     height: auto;
-    min-height: 50%;
-    width: 70%;
+    min-height: 70%;
+    max-height: 90%;
+    width: 80%;
 }
 
 #titulo_tarefas {
@@ -232,4 +233,200 @@
     font-size: 20px;
     font-weight: bold;
     width: 100%;
+}
+
+.cabecalho_tarefas span,
+.linha_tarefa span,
+.acoes_tarefa {
+    border-right: 1px solid var(--cor-destaque);
+    padding: 5px;
+}
+
+.cabecalho_tarefas, .linha_tarefa {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 3px solid var(--cor-destaque);
+}
+
+.acoes_tarefa {
+    display: flex;
+    flex-direction: row;
+    gap: 5px
+}
+
+/*Cadastrar Tarefa*/
+
+#cadastro_tarefa_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_cadastro_tarefa {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80%;
+    width: 40%;
+    gap: 1px;
+    font-size: 30px;
+    color: var(--cor-destaque);
+}
+
+#titulo_cadastro_tarefa {
+    font-size: 60px;
+    font-weight: bold;
+    text-decoration: underline;
+    color: var(--cor-destaque);
+    margin-top: 10px;
+}
+
+#fechar_cadastro_tarefa {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#nome_tarefa {
+    font-size: 20px;
+}
+
+#prioridade_tarefa {
+    font-size: 20px;
+}
+
+#nova_nota {
+    margin-top: 5px;
+}
+
+#nota_tarefa {
+    display: none;
+    margin-top: 5px;
+    min-width: 30%;
+    min-height: 10%;
+    max-width: 90%;
+    overflow-y: auto;
+}
+
+#cancelar_nota {
+    display: none;
+    margin-top: 5px;
+}
+
+#finalizar_cadastro_tarefa {
+    margin-top: auto;
+}
+
+/*Editar Tarefa Cadastrada*/
+
+#tarefa_cadastrada_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#tarefa_cadastrada_conteudo {
+    position: relative;
+    width: 90%;
+    height: 80%;
+    box-sizing: border-box;
+    color: var(--cor-destaque);
+}
+
+#editar_tarefa_texto {
+    border-bottom: 3px solid var(--cor-destaque);
+}
+
+#fechar_tarefa_cadastrada {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 25px;
+}
+
+#area_edicao_tarefa {
+    display: flex;
+    flex-direction: row;
+    height: 85%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#informacoes_tarefa_divisoria, #notas_divisoria {
+    flex: 1;
+    padding-left: 20px;
+}
+
+#informacoes_tarefa_divisoria h1, #notas_divisoria h1 {
+    margin-top: 0;
+}
+
+#informacoes_tarefa_divisoria h1 {
+    margin-bottom: 2px;
+}
+
+#informacoes_tarefa_divisoria{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 20px;
+    font-size: 20px;
+    gap: 3px;
+}
+
+#nome_tarefa_edicao, #prioridade_tarefa_edicao, #status_tarefa_edicao {
+    font-size: 22px;
+    width: auto;
+}
+
+#nome_tarefa_edicao {
+    width: 50%;
+}
+
+#salvar_edicao_tarefa {
+    margin-top: auto;
+    width: 20%;
+}
+
+#notas_divisoria {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 3px solid var(--cor-destaque);
+    gap: 3px;
+    font-size: 20px;
+    padding-right: 20px;
+}
+
+#nova_nota_edicao {
+    position: absolute;
+    margin-top: 3%;
+    margin-left: 12%;
+}
+
+#cancelar_nota_edicao {
+    position: absolute;
+    align-self: flex-start;
+    margin-left: 10%;
+    margin-top: 3%;
+}
+
+#nota_tarefa_edicao {
+    width: 99%;
+    min-height: 20%;
+    max-height: 100%;
+    resize: vertical;
+}
+
+#salvar_nota_edicao {
+    font-size: 20px;
+    width: 20%;
 }
