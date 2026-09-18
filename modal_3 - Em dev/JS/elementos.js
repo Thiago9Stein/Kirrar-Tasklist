@@ -72,3 +72,4 @@ const cancelarNota = [
 
 const dataAtual = new Date().toLocaleDateString('pt-BR');
 const dataCriacaoTarefa = document.getElementById('data_criacao_tarefa');
+const erroSemTitulo = document.getElementById('erro_sem_titulo');

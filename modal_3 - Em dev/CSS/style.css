@@ -287,6 +287,13 @@
     margin-top: 10px;
 }
 
+#erro_sem_titulo {
+    display: none;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 14px;
+}
+
 #fechar_cadastro_tarefa {
     position: absolute;
     right: 10px;

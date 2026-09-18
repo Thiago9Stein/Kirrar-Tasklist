@@ -171,3 +171,8 @@ textarea {
     color: var(--cor-destaque);
     background-color: var(--cor-fundo);
 }
+
+.erro {
+    color: var(--cor-fechar);
+    font-weight: bold;
+}
