@@ -17,7 +17,15 @@ function cadastroNotaInicial () {
 
     const prioridade = prioridadeTarefa[0].value
     const notaDescricao = notaTarefa[0].value
-    montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota)
+    const tarefaCriada = montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota)
+    exibirTarefa(tarefaCriada)
+    limparCadastroModal()
+    tarefasAbertas.style.display = 'none'
+    expandirTarefasAbertas.textContent = 'Tarefas Abertas ▼'
+    tarefasConcluidas.style.display = 'none'
+    expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▼'
+    cadastroTarefaModal.style.display = 'none'
     })
 }
 
+cadastroNotaInicial()

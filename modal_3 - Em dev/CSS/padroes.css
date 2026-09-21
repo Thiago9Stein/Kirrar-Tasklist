@@ -145,7 +145,7 @@ input[type="text"] {
     color: var(--cor-destaque);
     background-color: var(--cor-fundo);
 
-    cursor: pointer;
+    cursor: text;
 }
 
 input[type="color"] {
@@ -172,6 +172,42 @@ textarea {
     background-color: var(--cor-fundo);
 }
 
+::-webkit-scrollbar {
+    width: 25px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--cor-fundo);
+    border: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 5px;
+    background: var(--cor-destaque);
+    border: 2px solid var(--cor-fundo);
+    outline: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+::-webkit-resizer {
+    background-color: var(--cor-fundo);
+    border: 2px solid var(--cor-destaque);
+}
+
+.confirmacao {
+    display: flex;
+    position: fixed;
+    box-sizing: border-box;
+    color: var(--cor-destaque);
+    background-color: var(--cor-fundo);
+    border: 3px solid var(--cor-destaque);
+    border-radius: 5px;
+    outline: var(--cor-fundo);
+}
 .erro {
     color: var(--cor-fechar);
     font-weight: bold;

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Seletor Flexpro</title>
+    <title>TaskList</title>
     <link rel="stylesheet" href="../CSS/padroes.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/temas.css">
@@ -12,7 +12,7 @@
     <div id="background">
     </div>
     <div id="menu" class="black_box">
-        <h1 id="titulo_modal">Menu</h1>
+        <h1 id="titulo_modal">TaskList</h1>
         <button id="abrir_simob" class="botao_abrir">Abrir Simob</button>
         <button id="abrir_tarefas" class="botao_abrir">Abrir Tarefas</button>
         <button id="abrir_temas" class="botao_abrir">Personalizar Tema</button>
@@ -68,23 +68,18 @@
                             <span>Status</span>
                             <span>Ações</span>
                         </div>
-                        <div class="linha_tarefa">
-                            <span>Tarefa aberta 1</span>
-                            <span>Média</span>
-                            <span>Nova</span>
-                            <div class="acoes_tarefa">
-                                <button class="botao_editar">✎</button>
-                                <button class="botao_excluir">🗑</button>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="coluna_tarefas">
                     <button id="expandir_tarefas_concluidas" class="botao_expandir">Tarefas Concluídas ▼</button>
                     <div id="tarefas_concluidas" class="conteudo_expandido">
-                        <p>Tarefa teste 3</p>
-                        <p>Tarefa teste 4</p>
+                        <div class="cabecalho_tarefas">
+                            <span>Título</span>
+                            <span>Prioridade</span>
+                            <span>Status</span>
+                            <span>Ações</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,14 +93,14 @@
             <h1 id="titulo_cadastro_tarefa">Nova Tarefa</h1>
             <button id="fechar_cadastro_tarefa" class="botao_fechar">X</button>
             <label for="nome_tarefa">Título da tarefa</label>
-            <input type="text" id="nome_tarefa">
+            <input type="text" id="nome_tarefa" maxlength="25">
             <p id="erro_sem_titulo" class="erro">Não é possível cadastrar uma tarefa sem título!</p>
             <label for="prioridade_tarefa">Prioridade</label>
             <select id="prioridade_tarefa">
-                <option value="baixa">Baixa</option>
-                <option value="media">Média</option>
-                <option value="alta">Alta</option>
-                <option value="urgente">Urgente</option>
+                <option value="Baixa">Baixa</option>
+                <option value="Media">Média</option>
+                <option value="Alta">Alta</option>
+                <option value="Urgente">Urgente</option>
             </select>
             <button id="nova_nota" class="botao_abrir">+ Adicionar Nota</button>
             <button id="cancelar_nota" class="botao_cancelar">- Cancelar Nota</button>
@@ -122,28 +117,35 @@
                 <div id="informacoes_tarefa_divisoria">
                     <h1>Informações da Tarefa</h1>
                     <label for="nome_tarefa_edicao">Título da tarefa</label>
-                    <input type="text" id="nome_tarefa_edicao">
+                    <input type="text" id="nome_tarefa_edicao" maxlength="25">
                     <label for="prioridade_tarefa_edicao">Prioridade</label>
                     <select id="prioridade_tarefa_edicao">
-                        <option value="baixa">Baixa</option>
-                        <option value="media">Média</option>
-                        <option value="alta">Alta</option>
-                        <option value="urgente">Urgente</option>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Media">Média</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Urgente">Urgente</option>
                     </select>
                     <label for="status_tarefa_edicao">Status</label>
                     <select id="status_tarefa_edicao">
-                        <option value="nova">Nova</option>
-                        <option value="executando">Executando</option>
-                        <option value="finalizado">Finalizado</option>
-                        <option value="cancelado">Cancelado</option>
+                        <option value="Novo">Nova</option>
+                        <option value="Executando">Executando</option>
+                        <option value="Finalizado">Finalizado</option>
+                        <option value="Cancelado">Cancelado</option>
                     </select>
                     <p id="data_criacao_tarefa">Data da tarefa: </p>
 
-                    <button id="salvar_edicao_tarefa" class="botao_abrir">Salvar</button>
+                    <button id="salvar_edicao" class="botao_abrir">Salvar</button>
                 </div>
                 <div id="notas_divisoria">
                     <h1>Notas</h1>
-                    <button id="cancelar_nota_edicao" class="botao_abrir">Histórico de notas</button>
+                    <button id="abrir_historico_nota" class="botao_abrir">Histórico de notas</button>
+                    <div id="historico_notas">
+                        <span class="nota">➤ Descrição nota 1</span>
+                        <span class="nota">➤ Descrição nota 2</span>
+                        <span class="nota">➤ Descrição nota 3</span>
+                        <span class="nota">➤ Descrição nota aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+                        
+                    </div>
                     <button id="nova_nota_edicao" class="botao_abrir">+ Adicionar Nota</button>
                     <textarea id="nota_tarefa_edicao"></textarea>
                     <button id="salvar_nota_edicao" class="botao_abrir">Salvar Nota</button>

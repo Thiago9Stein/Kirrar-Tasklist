@@ -144,7 +144,7 @@ tarefasModal.addEventListener('click', (event) => {
 novaTarefa.addEventListener('click', () => {
     cadastroTarefaModal.style.display = 'flex'
     dataCriacaoTarefa.textContent = `Data de criação: ${dataAtual}`;
-    prioridadeTarefa[0].value = 'media'
+    prioridadeTarefa[0].value = 'Media'
 })
 
 function limparNotaCadastro () {
@@ -164,6 +164,12 @@ function alternarCancelarCadastro () {
     cancelarNota[1].style.display = 'none'
     novaNota[0].style.display = 'block'
     novaNota[1].style.display = 'block'
+}
+
+function limparCadastroModal () {
+    limparTituloCadastro()
+    limparNotaCadastro()
+    alternarCancelarCadastro()
 }
 
 novaNota[0].addEventListener('click', () => {
@@ -190,5 +196,30 @@ cadastroTarefaModal.addEventListener('click', (event) =>{
         limparTituloCadastro()
         alternarCancelarCadastro()
         cadastroTarefaModal.style.display = 'none'
+    }
+})
+
+novaNota[1].addEventListener('click', (event) => {
+    novaNota[1].style.display = 'none'
+    historicoNotas.style.display = 'none'
+    cancelarNota[1].style.display = 'block'
+    notaTarefa[1].style.display = 'block'
+    salvarNotaEdicao.style.display = 'block'
+})
+
+cancelarNota[1].addEventListener('click', (event) => {
+    limparNotaCadastro()
+    alternarCancelarCadastro()
+    salvarNotaEdicao.style.display = 'none'
+    historicoNotas.style.display = 'flex'
+})
+
+fecharTarefaCadastrada.addEventListener('click', (event) => {
+    tarefaCadastradaModal.style.display = 'none';
+})
+
+tarefaCadastradaModal.addEventListener('click', (event) => {
+    if (event.target === tarefaCadastradaModal) {
+        tarefaCadastradaModal.style.display = 'none'
     }
 })

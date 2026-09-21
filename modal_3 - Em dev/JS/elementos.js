@@ -46,6 +46,10 @@ const fecharCadastroTarefa = document.getElementById('fechar_cadastro_tarefa');
 const tarefaCadastradaModal = document.getElementById('tarefa_cadastrada_modal');
 const tarefaCadastradaConteudo = document.getElementById('tarefa_cadastrada_conteudo');
 const fecharTarefaCadastrada = document.getElementById('fechar_tarefa_cadastrada');
+const historicoNotas = document.getElementById('historico_notas')
+const statusTarefaEdicao = document.getElementById('status_tarefa_edicao')
+const salvarEdicao = document.getElementById('salvar_edicao')
+const salvarNotaEdicao = document.getElementById('salvar_nota_edicao')
 
 const nomeTarefa = [
     document.getElementById('nome_tarefa'),
@@ -63,11 +67,12 @@ const notaTarefa = [
     document.getElementById('nota_tarefa'),
     document.getElementById('nota_tarefa_edicao')
 ];
+
 const finalizarCadastroTarefa = document.getElementById('finalizar_cadastro_tarefa');
 
 const cancelarNota = [
     document.getElementById('cancelar_nota'),
-    document.getElementById('cancelar_nota_edicao')
+    document.getElementById('abrir_historico_nota')
 ];
 
 const dataAtual = new Date().toLocaleDateString('pt-BR');
