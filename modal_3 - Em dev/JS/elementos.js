@@ -50,6 +50,9 @@ const historicoNotas = document.getElementById('historico_notas')
 const statusTarefaEdicao = document.getElementById('status_tarefa_edicao')
 const salvarEdicao = document.getElementById('salvar_edicao')
 const salvarNotaEdicao = document.getElementById('salvar_nota_edicao')
+const dataAtual = new Date().toLocaleDateString('pt-BR');
+const dataCriacaoTarefa = document.getElementById('data_criacao_tarefa');
+const finalizarCadastroTarefa = document.getElementById('finalizar_cadastro_tarefa');
 
 const nomeTarefa = [
     document.getElementById('nome_tarefa'),
@@ -68,13 +71,17 @@ const notaTarefa = [
     document.getElementById('nota_tarefa_edicao')
 ];
 
-const finalizarCadastroTarefa = document.getElementById('finalizar_cadastro_tarefa');
-
 const cancelarNota = [
     document.getElementById('cancelar_nota'),
     document.getElementById('abrir_historico_nota')
 ];
 
-const dataAtual = new Date().toLocaleDateString('pt-BR');
-const dataCriacaoTarefa = document.getElementById('data_criacao_tarefa');
-const erroSemTitulo = document.getElementById('erro_sem_titulo');
+const erroSemTitulo = [
+    document.getElementById('erro_sem_titulo'),
+    document.getElementById('erro_sem_titulo_edicao')
+]
+
+const pesquisaTarefas = [
+    document.getElementById('pesquisar_abertas'),
+    document.getElementById('pesquisar_concluidas')
+]

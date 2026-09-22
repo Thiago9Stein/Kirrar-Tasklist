@@ -11,34 +11,44 @@ function criarNota(notaDescricao, nota, tarefa, notas) {
 
 function montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota) {
     const tarefa = {}
+
     tarefa.tarefaId = tarefaId
     tarefa.titulo = titulo
     tarefa.prioridade = prioridade
+
     const status = 'Novo'
     tarefa.status = status
+
     tarefas.push(tarefa)
     tarefaId++
 
     const notas = []
     const nota = {}
+
     tarefa.nextNotaId = 1
     tarefa.notas = notas
     
     if (escolhaCadastroNota) {
         criarNota(notaDescricao, nota, tarefa, notas)
     }
-    console.log("Tarefa cadastrada")
     return tarefa
 }
 
 function exibirTarefa(tarefa){
     const linha = document.createElement('div')
     linha.classList.add('linha_tarefa')
+
     const titulo = document.createElement('span')
+    titulo.classList.add('titulo_tarefa')
+
     const prioridade = document.createElement('span')
+    prioridade.classList.add('prioridade_tarefa')
+
     const status = document.createElement('span')
+    status.classList.add('status_tarefa')
 
     const acoes = document.createElement('div')
+
     const editar = document.createElement('button')
     editar.textContent = "✎"
     editar.classList.add('botao_editar')
@@ -62,6 +72,8 @@ function exibirTarefa(tarefa){
     linha.appendChild(status)
     linha.appendChild(acoes)
 
+    linha.id = tarefa.tarefaId
+
     tarefasAbertas.appendChild(linha)
 
     editar.addEventListener ('click', (event) => {
@@ -69,37 +81,86 @@ function exibirTarefa(tarefa){
             return tarefa.tarefaId === event.currentTarget.botaoId
         })
         nomeTarefa[1].value = tarefaEncontrada.titulo
-        if (nomeTarefa[1].value === "") {
-            erroSemTitulo.style.display = 'flex'
-            return
-        }
         prioridadeTarefa[1].value = tarefaEncontrada.prioridade
         statusTarefaEdicao.value = tarefaEncontrada.status
         salvarEdicao.botaoId = tarefaEncontrada.tarefaId
         tarefaCadastradaModal.style.display = 'flex'
     })
+
+    excluir.addEventListener ('click', (event) => {
+        const indiceTarefa = tarefas.findIndex((tarefa) => {
+            return tarefa.tarefaId === event.currentTarget.botaoId
+        })
+        tarefas.splice(indiceTarefa, 1)
+        linha.remove()
+    })
 }
 
-function salvarEdicaoTarefa (tarefa) {
+function salvarEdicaoTarefa (tarefaId) {
     const tarefaEncontrada = tarefas.find((tarefa) => { 
-        return tarefa.tarefaId === event.currentTarget.botaoId
+        return tarefa.tarefaId === tarefaId
     })
+
     tarefaEncontrada.titulo = nomeTarefa[1].value
     tarefaEncontrada.prioridade = prioridadeTarefa[1].value
     tarefaEncontrada.status = statusTarefaEdicao.value
+
+    const linha = document.getElementById(tarefaId)
+
+    linha.querySelector('.titulo_tarefa').textContent = tarefaEncontrada.titulo
+    linha.querySelector('.prioridade_tarefa').textContent = tarefaEncontrada.prioridade
+    linha.querySelector('.status_tarefa').textContent = tarefaEncontrada.status
+
+    if (statusTarefaEdicao.value === 'Finalizado') {
+        tarefasConcluidas.appendChild(linha)
+    } else {
+        tarefasAbertas.appendChild(linha)
+    }
 }
 
-salvarEdicao.addEventListener('click', (event) => {
+salvarEdicao.addEventListener('click', () => {
+    if (nomeTarefa[1].value === "") {
+        erroSemTitulo[1].style.display = 'flex'
+        return
+    }
     salvarEdicaoTarefa(salvarEdicao.botaoId)
+
     tarefaCadastradaModal.style.display = 'none'
+
     const tarefaSalvaMensagem = document.createElement('div')
     tarefaSalvaMensagem.classList.add('confirmacao')
+
     const mensagemSalva = document.createElement('span')
     mensagemSalva.textContent = 'Alterações salvas com sucesso!'
+
     tarefaSalvaMensagem.appendChild(mensagemSalva)
     tarefaSalvaMensagem.style.display = 'flex'
+
     document.body.appendChild(tarefaSalvaMensagem)
+
     setTimeout(() => {
         tarefaSalvaMensagem.remove()
-    }, 5000)
+    }, 4000)
 })
+
+for (let i = 0; i < nomeTarefa.length; i++) {
+    nomeTarefa[i].addEventListener('click', () => {
+        erroSemTitulo[i].style.display = 'none'
+    })    
+}
+
+for (let i = 0; i < pesquisaTarefas.length; i++) {
+    pesquisaTarefas[i].addEventListener('input', () => {
+        const tituloPesquisado = pesquisaTarefas[i].value
+    })
+
+    const tarefaEncontrada = resultadoPesquisa.find((tarefa) => {
+        return linha.id == tarefa.tarefaId
+    })
+
+    if (tarefaEncontrada) {
+        linha.style.display = 'flex'
+    } else {
+        linha.style.display = 'none'
+    }
+}

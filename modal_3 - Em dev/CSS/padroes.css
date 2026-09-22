@@ -201,13 +201,17 @@ textarea {
 .confirmacao {
     display: flex;
     position: fixed;
+    margin-left: 40%;
+    font-size: 30px;
     box-sizing: border-box;
     color: var(--cor-destaque);
     background-color: var(--cor-fundo);
     border: 3px solid var(--cor-destaque);
     border-radius: 5px;
     outline: var(--cor-fundo);
+    bottom: 25px;
 }
+
 .erro {
     color: var(--cor-fechar);
     font-weight: bold;

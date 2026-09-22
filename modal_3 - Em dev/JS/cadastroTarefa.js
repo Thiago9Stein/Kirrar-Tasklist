@@ -11,7 +11,7 @@ function cadastroNotaInicial () {
         const titulo = nomeTarefa[0].value
 
         if (titulo === "") {
-            erroSemTitulo.style.display = 'flex'
+            erroSemTitulo[0].style.display = 'flex'
             return
         }
 

@@ -242,7 +242,12 @@
     padding: 5px;
 }
 
-.cabecalho_tarefas, .linha_tarefa {
+.pesquisar_abertas, .pesquisar_concluidas {
+    width: 99%;
+    font-size: 20px;
+}
+
+#cabecalho_tarefas, #linha_tarefa {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     width: 100%;
@@ -399,7 +404,7 @@
 }
 
 #salvar_edicao_tarefa {
-    margin-top: auto;
+    bottom: 20px;
     width: 20%;
 }
 
@@ -455,4 +460,8 @@
     margin-top: 1%;
     font-size: 20px;
     width: 20%;
+}
+
+#erro_sem_titulo_edicao {
+    display: none;
 }
