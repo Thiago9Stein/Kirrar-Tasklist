@@ -149,18 +149,22 @@ for (let i = 0; i < nomeTarefa.length; i++) {
     })    
 }
 
+const tipoLista = [tarefasAbertas, tarefasConcluidas] 
+
 for (let i = 0; i < pesquisaTarefas.length; i++) {
     pesquisaTarefas[i].addEventListener('input', () => {
-        const tituloPesquisado = pesquisaTarefas[i].value
-    })
+        const tituloPesquisado = pesquisaTarefas[i].value.toLowerCase()
+        
+        const linhasTarefas = tipoLista [i].querySelectorAll('.linha_tarefa')
+    
+        for (let ii = 0; ii < linhasTarefas.length; ii++) {
+            const tituloEncontrado = linhasTarefas[ii].querySelector('.titulo_tarefa').textContent.toLowerCase()
 
-    const tarefaEncontrada = resultadoPesquisa.find((tarefa) => {
-        return linha.id == tarefa.tarefaId
+            if (tituloEncontrado.includes(tituloPesquisado)) {
+                linhasTarefas[ii].style.display = ''
+            } else {
+                linhasTarefas[ii].style.display = 'none'
+            }
+        }
     })
-
-    if (tarefaEncontrada) {
-        linha.style.display = 'flex'
-    } else {
-        linha.style.display = 'none'
-    }
 }

@@ -157,7 +157,7 @@
 
     margin-left: auto;
     
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -242,12 +242,12 @@
     padding: 5px;
 }
 
-.pesquisar_abertas, .pesquisar_concluidas {
+#pesquisar_abertas, #pesquisar_concluidas {
     width: 99%;
     font-size: 20px;
 }
 
-#cabecalho_tarefas, #linha_tarefa {
+.cabecalho_tarefas, .linha_tarefa {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
     width: 100%;
