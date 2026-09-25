@@ -6,30 +6,16 @@
     <link rel="stylesheet" href="../CSS/padroes.css">
     <link rel="stylesheet" href="../CSS/style.css">
     <link rel="stylesheet" href="../CSS/temas.css">
+    <link rel="icon" href="../tasklist_icon.png" type="image/png">
 </head>
 
 <body>
-    <div id="background">
-    </div>
+  <div id="background"></div>
     <div id="menu" class="black_box">
-        <h1 id="titulo_modal">TaskList</h1>
-        <button id="abrir_simob" class="botao_abrir">Abrir Simob</button>
+        <h1 id="titulo_modal">♕TaskList♕</h1>
         <button id="abrir_tarefas" class="botao_abrir">Abrir Tarefas</button>
         <button id="abrir_temas" class="botao_abrir">Personalizar Tema</button>
-    </div>
-
-    <div id="simob_modal" class="black_box">
-        <div id="conteudo_simob" class="white_box">
-            <h1 id="titulo_simob">Selecione a base:</h1>
-            <button id="fechar_simob" class="botao_fechar">✕</button>
-            <div id="posicao_botoes">
-                <button id="botao_adm" class="botao_abrir">Abrir ADM</button>
-                <button id="botao_demo" class="botao_abrir">Abrir Demonstração</button>
-                <button id="botao_habiteto" class="botao_abrir">Abrir Habiteto</button>
-                <button id="botao_simob" class="botao_abrir">Abrir Simob</button>
-                <button id="botao_base_propria" class="botao_abrir">Outra Base</button>
-            </div>
-        </div>
+        <button id="abrir_cafe">Café</button>
     </div>
 
     <div id="temas_modal" class="black_box">
@@ -64,10 +50,14 @@
                     <div id="tarefas_abertas" class="conteudo_expandido">
                         <input id="pesquisar_abertas" type="text" placeholder="Pesquisar tarefa..">
                         <div class="cabecalho_tarefas">
+                            <span>ID</span>
                             <span>Título</span>
                             <span>Prioridade</span>
                             <span>Status</span>
                             <span>Ações</span>
+                            <span>.</span>
+                        </div>
+                        <div class="lista_linhas_tarefas">
                         </div>
                     </div>
                 </div>
@@ -77,10 +67,14 @@
                     <div id="tarefas_concluidas" class="conteudo_expandido">
                         <input id="pesquisar_concluidas" type="text" placeholder="Pesquisar tarefa..">
                         <div class="cabecalho_tarefas">
+                            <span>ID</span>
                             <span>Título</span>
                             <span>Prioridade</span>
                             <span>Status</span>
                             <span>Ações</span>
+                            <span>.</span>
+                        </div>
+                        <div class="lista_linhas_tarefas">
                         </div>
                     </div>
                 </div>
@@ -142,10 +136,6 @@
                     <h1>Notas</h1>
                     <button id="abrir_historico_nota" class="botao_abrir">Histórico de notas</button>
                     <div id="historico_notas">
-                        <span class="nota">➤ Descrição nota 1</span>
-                        <span class="nota">➤ Descrição nota 2</span>
-                        <span class="nota">➤ Descrição nota 3</span>
-                        <span class="nota">➤ Descrição nota aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
                         
                     </div>
                     <button id="nova_nota_edicao" class="botao_abrir">+ Adicionar Nota</button>
@@ -155,7 +145,12 @@
             </div>
         </div>
     </div>
-
+    <div id="cafe_modal" class="black_box">
+      <div id="conteudo_cafe" class="white_box">
+        <h1 id="pergunta_cafe">Tem café?</h1>
+        <button id="calcular_cafe" class="botao_abrir">Calcular Café</button>
+      </div>
+    </div>
 </body>
 
 <script src="../JS/elementos.js"></script>

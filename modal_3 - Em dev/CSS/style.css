@@ -36,11 +36,6 @@
     color: var(--cor-destaque);
 }
 
-#abrir_simob {
-    font-size: 25px;
-    font-weight: bold;
-}
-
 #abrir_temas {
     font-size: 25px;
     font-weight: bold;
@@ -52,77 +47,6 @@
 }
 
 /*Fim do Menu*/
-
-/*Modal de Simob*/
-
-#simob_modal {
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-#conteudo_simob {
-    position: relative;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 40%;
-    height: auto;
-    padding: 15px;
-}
-
-#titulo_simob {
-    margin-top: 0px;
-
-    font-size: 40px;
-    font-weight: bold;
-
-    color: var(--cor-destaque);
-}
-
-#fechar_simob {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-
-    margin-left: auto;
-    
-    font-size: 25px;
-    font-weight: bold;
-}
-
-#posicao_botoes {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-#botao_adm {
-    height: 30px;
-    font-weight: bold;
-}
-
-#botao_demo {
-    height: 30px;
-    font-weight: bold;
-}
-
-#botao_simob {
-    height: 30px;
-    font-weight: bold;
-}
-
-#botao_base_propria {
-    height: 30px;
-    font-weight: bold;
-}
-
-/*Fim do Modal Simob*/
 
 /*Modal Temas*/
 
@@ -181,9 +105,10 @@
     justify-content: flex-start;
 
     color: var(--cor-destaque);
+
     height: auto;
-    min-height: 70%;
-    max-height: 90%;
+    min-height: 80%;
+    max-height: 80%;
     width: 80%;
 }
 
@@ -235,6 +160,10 @@
     width: 100%;
 }
 
+#tarefas_abertas {
+    max-height: 100%;
+}
+
 .cabecalho_tarefas span,
 .linha_tarefa span,
 .acoes_tarefa {
@@ -249,12 +178,33 @@
 
 .cabecalho_tarefas, .linha_tarefa {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
     width: 100%;
     box-sizing: border-box;
     align-items: center;
     gap: 10px;
     border-bottom: 3px solid var(--cor-destaque);
+}
+
+.cabecalho_tarefas {
+    grid-template-columns:  1fr 2fr 1fr 1fr 1fr 0.001fr;
+}
+
+.cabecalho_tarefas span:last-child {
+    color: transparent;
+}
+
+.lista_linhas_tarefas {
+    width: 100%;
+    max-height: 415px;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
+}
+
+.titulo_tarefa {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .acoes_tarefa {
@@ -325,6 +275,7 @@
     min-width: 30%;
     min-height: 10%;
     max-width: 90%;
+    font-size: 25px;
     overflow-y: auto;
 }
 
@@ -453,6 +404,7 @@
     min-height: 20%;
     max-height: 100%;
     resize: vertical;
+    font-size: 25px;
 }
 
 #salvar_nota_edicao {
@@ -464,4 +416,48 @@
 
 #erro_sem_titulo_edicao {
     display: none;
+}
+
+/*fim do modal de cadastro*/
+
+/*cafe*/
+
+#abrir_cafe {
+    position: fixed;
+    font-size: 6.7px;
+    top: 0.5px;
+
+    transition: color 0.67s ease;
+    color: var(--cor-destaque);
+    background-color: var(--cor-destaque);
+    border: none;
+
+    &:hover {
+        transition: color 0.67s ease;
+        color: var(--cor-fundo);
+    }
+    width: 67px;
+}
+
+#cafe_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_cafe {
+    display: flex;
+    flex-direction: column;
+    height: 25%;
+    width: 25%;
+}
+
+#pergunta_cafe {
+    color: var(--cor-destaque);
+    align-self: center;
+}
+
+#calcular_cafe {
+    align-self: center;
+    width: 50%;
 }

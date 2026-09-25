@@ -1,4 +1,5 @@
 let tarefaId = 1
+let tarefaAtual
 const tarefas = []
 
 function criarNota(notaDescricao, nota, tarefa, notas) {
@@ -6,7 +7,6 @@ function criarNota(notaDescricao, nota, tarefa, notas) {
     nota.notaId = tarefa.nextNotaId
     notas.push(nota)
     tarefa.nextNotaId++
-    console.log("Nota criada")
 }
 
 function montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota) {
@@ -31,12 +31,16 @@ function montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota) {
     if (escolhaCadastroNota) {
         criarNota(notaDescricao, nota, tarefa, notas)
     }
+
     return tarefa
 }
 
-function exibirTarefa(tarefa){
+function exibirTarefa(tarefa, listaDestino){
     const linha = document.createElement('div')
     linha.classList.add('linha_tarefa')
+    
+    const id = document.createElement('span')
+    id.classList.add('id_tarefa')
 
     const titulo = document.createElement('span')
     titulo.classList.add('titulo_tarefa')
@@ -63,10 +67,12 @@ function exibirTarefa(tarefa){
 
     acoes.classList.add('acoes_tarefa')
 
+    id.textContent = tarefa.tarefaId
     titulo.textContent = tarefa.titulo
     prioridade.textContent = tarefa.prioridade
     status.textContent = tarefa.status
 
+    linha.appendChild(id)
     linha.appendChild(titulo)
     linha.appendChild(prioridade)
     linha.appendChild(status)
@@ -74,16 +80,22 @@ function exibirTarefa(tarefa){
 
     linha.id = tarefa.tarefaId
 
-    tarefasAbertas.appendChild(linha)
+    listaDestino.appendChild(linha)
 
     editar.addEventListener ('click', (event) => {
         const tarefaEncontrada = tarefas.find((tarefa) => { 
             return tarefa.tarefaId === event.currentTarget.botaoId
         })
+
+        tarefaAtual = tarefaEncontrada
         nomeTarefa[1].value = tarefaEncontrada.titulo
         prioridadeTarefa[1].value = tarefaEncontrada.prioridade
         statusTarefaEdicao.value = tarefaEncontrada.status
+
         salvarEdicao.botaoId = tarefaEncontrada.tarefaId
+
+        exibirNotas(tarefaAtual)
+
         tarefaCadastradaModal.style.display = 'flex'
     })
 
@@ -91,31 +103,68 @@ function exibirTarefa(tarefa){
         const indiceTarefa = tarefas.findIndex((tarefa) => {
             return tarefa.tarefaId === event.currentTarget.botaoId
         })
+
         tarefas.splice(indiceTarefa, 1)
-        linha.remove()
+
+        reordenarListas (tarefas)
     })
 }
 
-function salvarEdicaoTarefa (tarefaId) {
-    const tarefaEncontrada = tarefas.find((tarefa) => { 
-        return tarefa.tarefaId === tarefaId
+function exibirNotas(tarefa) {
+    historicoNotas.innerHTML = ''
+
+    const notas = tarefa.notas;
+
+    for (let i = notas.length - 1; i >= 0; i--) {
+        const nota = notas[i];
+
+        const notaImpressa = document.createElement("span")
+        notaImpressa.classList.add("nota")
+
+        notaImpressa.textContent = `➤ ${nota.notaDescricao}`
+
+        historicoNotas.appendChild(notaImpressa)
+    }
+}
+
+function reordenarListas (tarefas) {
+
+    const tarefasAbertas = tarefas.filter((tarefa) => {
+        return tarefa.status !== 'Finalizado'
     })
 
-    tarefaEncontrada.titulo = nomeTarefa[1].value
-    tarefaEncontrada.prioridade = prioridadeTarefa[1].value
-    tarefaEncontrada.status = statusTarefaEdicao.value
+    tarefasAbertas.sort((a, b) => a.tarefaId - b.tarefaId)
 
-    const linha = document.getElementById(tarefaId)
+    const tarefasConcluidas = tarefas.filter((tarefa) => { 
+        return tarefa.status === 'Finalizado'
+    })
 
-    linha.querySelector('.titulo_tarefa').textContent = tarefaEncontrada.titulo
-    linha.querySelector('.prioridade_tarefa').textContent = tarefaEncontrada.prioridade
-    linha.querySelector('.status_tarefa').textContent = tarefaEncontrada.status
+    tarefasConcluidas.sort((a, b) => a.tarefaId - b.tarefaId)
 
-    if (statusTarefaEdicao.value === 'Finalizado') {
-        tarefasConcluidas.appendChild(linha)
-    } else {
-        tarefasAbertas.appendChild(linha)
+    const tarefasOrdenadas = [ ...tarefasAbertas, ...tarefasConcluidas]
+
+    listaLinhasTarefas[0].innerHTML = '';
+    listaLinhasTarefas[1].innerHTML = '';
+
+    for (let i = 0; i < tarefasOrdenadas.length; i++) {
+        const tarefaEncontrada = tarefasOrdenadas[i]
+        let listaDestino
+
+        if (tarefaEncontrada.status === 'Finalizado') {
+            listaDestino = listaLinhasTarefas[1]
+        } else {
+            listaDestino = listaLinhasTarefas[0]
+        }
+        exibirTarefa(tarefaEncontrada, listaDestino)
     }
+}
+
+function salvarEdicaoTarefa (tarefaId) {
+    tarefaAtual.titulo = nomeTarefa[1].value
+    tarefaAtual.prioridade = prioridadeTarefa[1].value
+    tarefaAtual.status = statusTarefaEdicao.value
+
+    reordenarListas (tarefas)
 }
 
 salvarEdicao.addEventListener('click', () => {
@@ -149,16 +198,16 @@ for (let i = 0; i < nomeTarefa.length; i++) {
     })    
 }
 
-const tipoLista = [tarefasAbertas, tarefasConcluidas] 
+const tipoLista = [listaLinhasTarefas[0], listaLinhasTarefas[1]]
 
 for (let i = 0; i < pesquisaTarefas.length; i++) {
     pesquisaTarefas[i].addEventListener('input', () => {
-        const tituloPesquisado = pesquisaTarefas[i].value.toLowerCase()
+        const tituloPesquisado = pesquisaTarefas[i].value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '')
         
         const linhasTarefas = tipoLista [i].querySelectorAll('.linha_tarefa')
     
         for (let ii = 0; ii < linhasTarefas.length; ii++) {
-            const tituloEncontrado = linhasTarefas[ii].querySelector('.titulo_tarefa').textContent.toLowerCase()
+            const tituloEncontrado = linhasTarefas[ii].querySelector('.titulo_tarefa').textContent.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, '')
 
             if (tituloEncontrado.includes(tituloPesquisado)) {
                 linhasTarefas[ii].style.display = ''
