@@ -1,5 +1,6 @@
+let escolhaCadastroNota = false
+
 function cadastroNotaInicial () {
-    let escolhaCadastroNota = false
     
     novaNota[0].addEventListener ('click', () => {
         escolhaCadastroNota = true
@@ -17,20 +18,20 @@ function cadastroNotaInicial () {
             return
         }
 
-    const prioridade = prioridadeTarefa[0].value
-    const notaDescricao = notaTarefa[0].value
-    const tarefaCriada = montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota)
+        const prioridade = prioridadeTarefa[0].value
+        const notaDescricao = notaTarefa[0].value
 
-    reordenarListas(tarefas)
-    limparCadastroModal()
+        if (escolhaCadastroNota === true && notaDescricao === '') {
+            apresentarErroNota()
+            return
+        }
 
-    tarefasAbertas.style.display = 'none'
-    expandirTarefasAbertas.textContent = 'Tarefas Abertas ▼'
+        const tarefaCriada = montarTarefa(titulo, prioridade, notaDescricao)
 
-    tarefasConcluidas.style.display = 'none'
-    expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▼'
+        reordenarListas(tarefas)
 
-    cadastroTarefaModal.style.display = 'none'
+        finalizarCadastroTarefa.disabled = true
+        fecharCadastroTarefaModal ()
     })
 }
 

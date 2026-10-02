@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Asap&display=swap');
 
 * {
     font-family: 'Asap', sans-serif;
@@ -27,6 +27,16 @@
     border-radius: 15px;
 }
 
+.container_menor {
+    box-sizing: border-box;
+
+    background-color: var(--cor-fundo);
+    border: 3px solid var(--cor-destaque);
+    outline: 3px solid var(--cor-fundo);
+    padding: 5px;
+    border-radius: 5px;
+}
+
 .botao_abrir {
     transition: background-color 0.3s ease;
     transition: color 0.3s ease;
@@ -38,10 +48,8 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-destaque);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -60,10 +68,8 @@
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
-    
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-fechar);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -81,10 +87,8 @@
 
     font-weight: bold;
     cursor: pointer;
-    
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-destaque);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -103,10 +107,8 @@
 
     font-weight: bold;
     cursor: pointer;
-    
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-fechar);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -126,13 +128,17 @@
     cursor: pointer;
 
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-destaque);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
         outline: 3px solid var(--cor-destaque);
     }
+}
+
+.botao_expansao {
+    color: var(--cor-destaque);
+    background-color: transparent;
+    border: none;
 }
 
 .conteudo_expandido {
@@ -153,16 +159,14 @@
     color: var(--cor-fechar);
     border: 3px solid var(--cor-fechar);
     border-radius: 50%;
-    
+
     align-items: center;
     justify-content: center;
 
     font-weight: bold;
     cursor: pointer;
-    
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-fechar);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -195,9 +199,8 @@ select {
     border-radius: 5px;
     color: var(--cor-destaque);
     background-color: var(--cor-fundo);
+
     &:hover {
-        transition: background-color 0.3s ease;
-        transition: color 0.3s ease;
         background-color: var(--cor-destaque);
         color: var(--cor-fundo);
         border: 3px solid var(--cor-fundo);
@@ -233,6 +236,12 @@ textarea {
     cursor: pointer;
 }
 
+::-webkit-scrollbar-thumb:hover {
+    background: var(--cor-fundo);
+    border: 2px solid var(--cor-destaque);
+    outline: 3px solid var(--cor-fundo);
+}
+
 ::-webkit-resizer {
     background-color: var(--cor-fundo);
     border: 2px solid var(--cor-destaque);
@@ -253,7 +262,72 @@ textarea {
 }
 
 .erro {
-    transition: color 0.3s ease;
     color: var(--cor-fechar);
     font-weight: bold;
+}
+
+@keyframes tremer {
+    0% {
+        transform: translate(0, 0);
+        filter: blur(0) grayscale(0) drop-shadow(0 transparent);
+    }
+
+    25% {
+        transform: translate(3px, -2px);
+        filter: blur(2px) grayscale(1) drop-shadow(2px 2px 8px white);
+    }
+
+    50% {
+        transform: translate(-2px, 3px);
+        filter: blur(4px) grayscale(1) drop-shadow(2px 2px 8px white);
+    }
+
+    75% {
+        transform: translate(3px, 3px);
+        filter: blur(2px) grayscale(1) drop-shadow(2px 2px 8px white);
+    }
+
+    100% {
+        transform: translate(0, 0);
+        filter: blur(0) grayscale(0) drop-shadow(0 transparent);
+    }
+}
+
+.tremendo {
+    animation: tremer 0.35s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    } to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        visibility: visible;
+    } to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease;
+}
+
+.fade-out{
+    animation: fadeOut 0.6s ease;
+}
+
+footer {
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    color: var(--cor-destaque);
 }

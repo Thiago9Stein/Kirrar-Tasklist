@@ -2,14 +2,37 @@ let tarefaId = 1
 let tarefaAtual
 const tarefas = []
 
+
+function apresentarErroNota () {
+    erroNotaVazia[0].style.display = 'flex'
+    erroNotaVazia[1].style.display = 'flex'
+}
+
+function esconderErroNota () {
+    erroNotaVazia[0].style.display = 'none'
+    erroNotaVazia[1].style.display = 'none'    
+}
+
 function criarNota(notaDescricao, nota, tarefa, notas) {
     nota.notaDescricao = notaDescricao
+
+    if (notaDescricao === '') {
+        apresentarErroNota()
+        return
+    }
+
     nota.notaId = tarefa.nextNotaId
+
+    const tempo = pegarTempo()
+
+    nota.notaData = tempo.data
+    nota.notaHora = tempo.hora
+
     notas.push(nota)
     tarefa.nextNotaId++
 }
 
-function montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota) {
+function montarTarefa(titulo, prioridade, notaDescricao) {
     const tarefa = {}
 
     tarefa.tarefaId = tarefaId
@@ -18,6 +41,10 @@ function montarTarefa(titulo, prioridade, notaDescricao, escolhaCadastroNota) {
 
     const status = 'Novo'
     tarefa.status = status
+    
+    const tempo = pegarTempo()
+    tarefa.tarefaData = tempo.data
+    tarefa.tarefaHora = tempo.hora
 
     tarefas.push(tarefa)
     tarefaId++
@@ -91,12 +118,20 @@ function exibirTarefa(tarefa, listaDestino){
         nomeTarefa[1].value = tarefaEncontrada.titulo
         prioridadeTarefa[1].value = tarefaEncontrada.prioridade
         statusTarefaEdicao.value = tarefaEncontrada.status
-
+        
+        dataCriacaoTarefa.textContent = `Tarefa criada em ${tarefaEncontrada.tarefaData} às ${tarefaEncontrada.tarefaHora}.`
+        
         salvarEdicao.botaoId = tarefaEncontrada.tarefaId
 
         exibirNotas(tarefaAtual)
 
         tarefaCadastradaModal.style.display = 'flex'
+        
+        tarefaCadastradaModal.classList.add('fade-in')
+
+        tarefaCadastradaModal.addEventListener('animationend', (event) => {
+            tarefaCadastradaModal.classList.remove('fade-in')
+        }, {once: true})
     })
 
     excluir.addEventListener ('click', (event) => {
@@ -106,7 +141,7 @@ function exibirTarefa(tarefa, listaDestino){
 
         tarefas.splice(indiceTarefa, 1)
 
-        reordenarListas (tarefas)
+        reordenarListas(tarefas)
     })
 }
 
@@ -118,12 +153,41 @@ function exibirNotas(tarefa) {
     for (let i = notas.length - 1; i >= 0; i--) {
         const nota = notas[i];
 
-        const notaImpressa = document.createElement("span")
-        notaImpressa.classList.add("nota")
+        const notaContainer = document.createElement('div')
+        notaContainer.classList.add('container_menor','container_menor_nota')
 
-        notaImpressa.textContent = `➤ ${nota.notaDescricao}`
+        const expandirNota = document.createElement('button')
 
-        historicoNotas.appendChild(notaImpressa)
+        const infoDataNota = document.createElement('span')
+        infoDataNota.textContent = `Nota criada em: ${nota.notaData} às ${nota.notaHora}`
+        infoDataNota.style.borderBottom = '2px solid var(--cor-destaque)'
+
+        expandirNota.textContent = `▼`
+        expandirNota.classList.add('botao_expansao','expandir_nota')
+
+        const notaImpressa = document.createElement('div')
+        notaImpressa.classList.add('nota')
+
+        const notaTexto = document.createElement('span')
+        notaTexto.textContent = nota.notaDescricao
+
+        notaImpressa.appendChild(notaTexto)
+
+        notaContainer.appendChild(expandirNota)
+        notaContainer.appendChild(infoDataNota)
+        notaContainer.appendChild(notaImpressa)
+
+        historicoNotas.appendChild(notaContainer)
+
+        expandirNota.addEventListener('click', (event) => {
+            if (notaImpressa.style.height ==  '0px' || notaImpressa.style.height === '') {
+                notaImpressa.style.height = `${notaImpressa.scrollHeight}px`
+                expandirNota.classList.add('aberta')
+            } else {
+                notaImpressa.style.height = '0px'
+                expandirNota.classList.remove('aberta')
+            }
+        })
     }
 }
 
@@ -143,8 +207,8 @@ function reordenarListas (tarefas) {
 
     const tarefasOrdenadas = [ ...tarefasAbertas, ...tarefasConcluidas]
 
-    listaLinhasTarefas[0].innerHTML = '';
-    listaLinhasTarefas[1].innerHTML = '';
+    listaLinhasTarefas[0].innerHTML = ''
+    listaLinhasTarefas[1].innerHTML = ''
 
     for (let i = 0; i < tarefasOrdenadas.length; i++) {
         const tarefaEncontrada = tarefasOrdenadas[i]
@@ -174,10 +238,10 @@ salvarEdicao.addEventListener('click', () => {
     }
     salvarEdicaoTarefa(salvarEdicao.botaoId)
 
-    tarefaCadastradaModal.style.display = 'none'
+    fecharTarefaCadastradaModal()
 
     const tarefaSalvaMensagem = document.createElement('div')
-    tarefaSalvaMensagem.classList.add('confirmacao')
+    tarefaSalvaMensagem.classList.add('confirmacao','fade-in')
 
     const mensagemSalva = document.createElement('span')
     mensagemSalva.textContent = 'Alterações salvas com sucesso!'
@@ -188,7 +252,18 @@ salvarEdicao.addEventListener('click', () => {
     document.body.appendChild(tarefaSalvaMensagem)
 
     setTimeout(() => {
-        tarefaSalvaMensagem.remove()
+        tarefaSalvaMensagem.addEventListener('animationend', (event) => {
+            tarefaSalvaMensagem.classList.remove('fade-in')
+        }, {once: true})
+
+        tarefaSalvaMensagem.classList.add('fade-out')
+
+        tarefaSalvaMensagem.addEventListener('animationend', (event) => {
+            if(event.animationName !== 'fadeOut') return
+
+            tarefaSalvaMensagem.classList.remove('fade-out')
+            tarefaSalvaMensagem.remove()
+        }, {once: true})
     }, 4000)
 })
 

@@ -1,7 +1,23 @@
+let intervalo
+function pegarTempo () {
+    const dataAtual = new Date().toLocaleDateString('pt-BR')
+    const horaAtual = new Date().toLocaleTimeString('pt-BR')
+
+    return {
+        data: dataAtual,
+        hora: horaAtual
+    }
+}
+
 /*Modal Temas*/
 
 abrirTemas.addEventListener('click', () => {
-    temas_modal.style.display = 'flex'
+    temasModal.style.display = 'flex'
+    temasModal.classList.add('fade-in')
+
+    temasModal.addEventListener('animationend', (event) => {
+        temasModal.classList.remove('fade-in')
+    }, {once: true})
 })
 
 if (corFundoSalva) {
@@ -49,13 +65,24 @@ restaurarTemaPadrao.addEventListener('click', () => {
     location.reload()
 })
 
+function fecharModalTemas () {
+    clearInterval(intervalo)
+    temasModal.classList.add('fade-out')
+
+    temasModal.addEventListener('animationend', (event) => {
+        if (event.animationName !== 'fadeOut') return
+
+        temasModal.classList.remove('fade-out')
+        temasModal.style.display = 'none'
+    }, {once: true})
+}
 fecharTemas.addEventListener('click', () => {
-    temas_modal.style.display = 'none'
+    fecharModalTemas()
 })
 
-temas_modal.addEventListener('click', (event) => {
-    if (event.target === temas_modal) {
-        temas_modal.style.display = 'none'
+temasModal.addEventListener('click', (event) => {
+    if (event.target === temasModal) {
+        fecharModalTemas()
     }
 })
 
@@ -63,8 +90,23 @@ temas_modal.addEventListener('click', (event) => {
 
 /*Modal Tarefas*/
 
+function esconderListaAbertas () {
+    tarefasAbertas.style.display = 'none'
+    expandirTarefasAbertas.textContent = 'Tarefas Abertas ▼'
+}
+
+function esconderListaConcluidas () {
+    tarefasConcluidas.style.display = 'none'
+    expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▼'
+}
+
 abrirTarefas.addEventListener('click', () => {
-    tarefas_modal.style.display = 'flex'
+    tarefasModal.style.display = 'flex'
+    tarefasModal.classList.add('fade-in')
+
+    tarefasModal.addEventListener('animationend', (event) => {
+        tarefasModal.classList.remove('fade-in')
+    }, {once: true})
 })
 
 expandirTarefasAbertas.addEventListener('click', () => {
@@ -73,8 +115,7 @@ expandirTarefasAbertas.addEventListener('click', () => {
         tarefasAbertas.style.display = 'flex'
         expandirTarefasAbertas.textContent = 'Tarefas Abertas ▲'
     } else {
-        tarefasAbertas.style.display = 'none'
-        expandirTarefasAbertas.textContent = 'Tarefas Abertas ▼'
+        esconderListaAbertas()
     }
 
 })
@@ -85,28 +126,48 @@ expandirTarefasConcluidas.addEventListener('click', () => {
         tarefasConcluidas.style.display = 'flex'
         expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▲'
     } else {
-        tarefasConcluidas.style.display = 'none'
-        expandirTarefasConcluidas.textContent = 'Tarefas Concluídas ▼'
+        esconderListaConcluidas()
     }
 
 })
 
+function fecharTarefasModal () {
+    clearInterval(intervalo)
+    tarefasModal.classList.add('fade-out')
+
+    tarefasModal.addEventListener('animationend',(event) => {
+        if (event.animationName !== 'fadeOut') return
+
+        tarefasModal.classList.remove('fade-out')
+        tarefasModal.style.display = 'none'
+        esconderListaAbertas()
+        esconderListaConcluidas()
+    }, {once: true} )
+}
+
 fecharTarefas.addEventListener('click', () => {
-    tarefas_modal.style.display = 'none'
+    fecharTarefasModal()
 })
 
 tarefasModal.addEventListener('click', (event) => {
-    if (event.target === tarefas_modal) {
-        tarefas_modal.style.display = 'none'
+    if (event.target === tarefasModal) {
+        fecharTarefasModal()
     }
 })
 
 /*Cadastro de tarefa*/
 
 novaTarefa.addEventListener('click', () => {
+    finalizarCadastroTarefa.disabled = false
+    escolhaCadastroNota = false
     cadastroTarefaModal.style.display = 'flex'
-    dataCriacaoTarefa.textContent = `Data de criação: ${dataAtual}`
     prioridadeTarefa[0].value = 'Media'
+
+    cadastroTarefaModal.classList.add('fade-in')
+
+    cadastroTarefaModal.addEventListener('animationend', (event) => {
+        cadastroTarefaModal.classList.remove('fade-in')
+    }, {once: true})
 })
 
 function limparNotaCadastro () {
@@ -131,6 +192,22 @@ function limparCadastroModal () {
     limparTituloCadastro()
     limparNotaCadastro()
     alternarCancelarCadastro()
+    escolhaCadastroNota = false
+}
+
+function fecharCadastroTarefaModal () {
+    clearInterval(intervalo)
+    cadastroTarefaModal.classList.add('fade-out')
+
+    cadastroTarefaModal.addEventListener('animationend', (event) => {
+        if (event.animationName !== 'fadeOut') return
+
+        cadastroTarefaModal.classList.remove('fade-out')
+
+        cadastroTarefaModal.style.display = 'none'
+        limparCadastroModal()
+
+    }, {once: true})
 }
 
 novaNota[0].addEventListener('click', () => {
@@ -140,35 +217,39 @@ novaNota[0].addEventListener('click', () => {
 })
 
 cancelarNota[0].addEventListener('click', () => {
+    esconderErroNota ()
     limparNotaCadastro()
     alternarCancelarCadastro()
 })
 
 fecharCadastroTarefa.addEventListener('click', () => {
-    limparNotaCadastro()
-    limparTituloCadastro()
-    alternarCancelarCadastro()
-
-    cadastroTarefaModal.style.display = 'none'
+    fecharCadastroTarefaModal()
 })
 
 cadastroTarefaModal.addEventListener('click', (event) =>{
     if (event.target === cadastroTarefaModal) {
-        limparNotaCadastro()
-        limparTituloCadastro()
-        alternarCancelarCadastro()
-
-        cadastroTarefaModal.style.display = 'none'
+        fecharCadastroTarefaModal()
     }
 })
 
+/*Modal de edição de tarefa*/
+
 novaNota[1].addEventListener('click', (event) => {
+    esconderErroNota ()
     novaNota[1].style.display = 'none'
     historicoNotas.style.display = 'none'
 
     cancelarNota[1].style.display = 'block'
     notaTarefa[1].style.display = 'block'
     salvarNotaEdicao.style.display = 'block'
+})
+
+notaTarefa[0].addEventListener('focus', (event) => {
+    esconderErroNota ()
+})
+
+notaTarefa[1].addEventListener('focus', (event) => {
+    esconderErroNota ()
 })
 
 salvarNotaEdicao.addEventListener('click', (event) => {
@@ -186,6 +267,7 @@ salvarNotaEdicao.addEventListener('click', (event) => {
 })
 
 cancelarNota[1].addEventListener('click', (event) => {
+    esconderErroNota ()
     limparNotaCadastro()
     alternarCancelarCadastro()
 
@@ -193,32 +275,116 @@ cancelarNota[1].addEventListener('click', (event) => {
     historicoNotas.style.display = 'flex'
 })
 
-fecharTarefaCadastrada.addEventListener('click', (event) => {
-    limparNotaCadastro()
-    alternarCancelarCadastro()
 
-    historicoNotas.style.display = 'flex'
-    salvarNotaEdicao.style.display = 'none'
-    tarefaCadastradaModal.style.display = 'none'
-})
+function fecharTarefaCadastradaModal () {
+    clearInterval(intervalo)
+    tarefaCadastradaModal.classList.add('fade-out')
 
-tarefaCadastradaModal.addEventListener('click', (event) => {
-    if (event.target === tarefaCadastradaModal) {
+    tarefaCadastradaModal.addEventListener('animationend', (event) => {
+        if(event.animationName !== 'fadeOut') return
+
+        tarefaCadastradaModal.classList.remove('fade-out')
+        tarefaCadastradaModal.style.display = 'none'
+
         limparNotaCadastro()
         alternarCancelarCadastro()
 
         historicoNotas.style.display = 'flex'
         salvarNotaEdicao.style.display = 'none'
-        tarefaCadastradaModal.style.display = 'none'
+    }, {once: true})
+}
+
+fecharTarefaCadastrada.addEventListener('click', (event) => {
+    fecharTarefaCadastradaModal()
+})
+
+tarefaCadastradaModal.addEventListener('click', (event) => {
+    if (event.target === tarefaCadastradaModal) {
+        fecharTarefaCadastradaModal()
     }
 })
-let cafe
+
+/*Fim das tarefas*/
+
+/*cafe*/
 
 abrirCafe.addEventListener('click', (event) => {
     cafeModal.style.display = 'flex'
+    cafeModal.classList.add('fade-in')
+
+    cafeModal.addEventListener('animationend', (event) => {
+        cafeModal.classList.remove('fade-in')
+    }, {once: true})
 })
 
-calcularCafe.addEventListener('click', (event) => {
-    cafe = let numero = Math.floor(Math.random() * 10) + 1
+const respostaCafe = document.createElement('span')
+respostaCafe.classList.add('respostaCafe')
+
+function apresentarRespostaCafe (respostaCafeEscolhida){
+    let caractereAtual = 0
+        
+    intervalo = setInterval(() => {
+        cafeModal.classList.remove('tremendo')
+        void cafeModal.offsetWidth
+        cafeModal.classList.add('tremendo')
+
+        let caractereRecebido = respostaCafeEscolhida[caractereAtual]
+
+        respostaCafe.textContent += caractereRecebido
+
+        caractereAtual++
+
+        if (caractereAtual >= respostaCafeEscolhida.length) {
+            clearInterval(intervalo)
+        }
+    }, 200);
     
+    cafeModal.addEventListener('animationend', (event) => {
+        cafeModal.classList.remove('tremendo')
+    })
+}
+
+calcularCafe.addEventListener('click', (event) => {
+    clearInterval(intervalo)
+
+    respostaCafe.textContent = ''
+
+    cafe = Math.floor(Math.random() * 10) + 1
+
+    if (cafe === 1) {
+        let respostaCafeEscolhida = 'Tem café!'
+        apresentarRespostaCafe(respostaCafeEscolhida)
+
+    } else {
+        let respostaCafeEscolhida = 'Não tem café!'
+        apresentarRespostaCafe(respostaCafeEscolhida)
+    }
+
+    conteudoCafe.appendChild(respostaCafe)
+
+    cafeModal
+})
+
+function fecharModalCafe () {
+    clearInterval(intervalo)
+    respostaCafe.textContent = ''
+    cafeModal.classList.add('fade-out')
+
+    cafeModal.addEventListener('animationend', (event) => {
+        if (event.animationName !== 'fadeOut') return
+
+        cafeModal.classList.remove('fade-out')
+        cafeModal.style.display = 'none'
+
+    }, {once: true})
+}
+
+fecharCafe.addEventListener('click', (event) => {
+    fecharModalCafe()
+})
+
+cafeModal.addEventListener('click', (event) => {
+    if (event.target === cafeModal) {
+        fecharModalCafe()
+    }
 })

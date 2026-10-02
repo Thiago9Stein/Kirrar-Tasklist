@@ -101,6 +101,7 @@
             <button id="nova_nota" class="botao_abrir">+ Adicionar Nota</button>
             <button id="cancelar_nota" class="botao_cancelar">- Cancelar Nota</button>
             <textarea id="nota_tarefa"></textarea>
+            <p id="erro_nota_vazia" class="erro">Não é possível cadastrar uma nota vazia!</p>
             <button id="finalizar_cadastro_tarefa" class="botao_abrir">Cadastrar Tarefa</button>
         </div>
     </div>
@@ -128,18 +129,17 @@
                         <option value="Executando">Executando</option>
                         <option value="Finalizado">Finalizado</option>
                     </select>
-                    <p id="data_criacao_tarefa">Data da tarefa: </p>
-
                     <button id="salvar_edicao" class="botao_abrir">Salvar</button>
+                    <span id="data_criacao_tarefa"></span>
                 </div>
                 <div id="notas_divisoria">
                     <h1>Notas</h1>
                     <button id="abrir_historico_nota" class="botao_abrir">Histórico de notas</button>
                     <div id="historico_notas">
-                        
                     </div>
                     <button id="nova_nota_edicao" class="botao_abrir">+ Adicionar Nota</button>
                     <textarea id="nota_tarefa_edicao"></textarea>
+                    <p id="erro_nota_vazia_edicao" class="erro">Não é possível cadastrar uma nota vazia!</p>
                     <button id="salvar_nota_edicao" class="botao_abrir">Salvar Nota</button>
                 </div>
             </div>
@@ -147,11 +147,16 @@
     </div>
     <div id="cafe_modal" class="black_box">
       <div id="conteudo_cafe" class="white_box">
+        <button id="fechar_cafe" class="botao_fechar">✕</button>
         <h1 id="pergunta_cafe">Tem café?</h1>
         <button id="calcular_cafe" class="botao_abrir">Calcular Café</button>
       </div>
     </div>
 </body>
+
+<footer>
+    <p>Made by Kayane Kirrar</p>
+</footer>
 
 <script src="../JS/elementos.js"></script>
 <script src="../JS/script.js"></script>

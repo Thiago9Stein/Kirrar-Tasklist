@@ -3,8 +3,8 @@ const menu = document.getElementById('menu')
 /*Modal Temas*/
 
 const abrirTemas = document.getElementById('abrir_temas')
-const temas_modal = document.getElementById('temas_modal')
-const conteudo_temas = document.getElementById('conteudo_temas')
+const temasModal = document.getElementById('temas_modal')
+const conteudoTemas = document.getElementById('conteudo_temas')
 const fecharTemas = document.getElementById('fechar_temas')
 const corFundo = document.getElementById('cor_fundo')
 const corFechar = document.getElementById('cor_fechar')
@@ -44,9 +44,8 @@ const statusTarefaEdicao = document.getElementById('status_tarefa_edicao')
 const salvarEdicao = document.getElementById('salvar_edicao')
 const salvarNotaEdicao = document.getElementById('salvar_nota_edicao')
 const dataCriacaoTarefa = document.getElementById('data_criacao_tarefa')
+const dataCriacaoNota = document.getElementById('data_criacao_nota')
 const finalizarCadastroTarefa = document.getElementById('finalizar_cadastro_tarefa')
-
-const dataAtual = new Date().toLocaleDateString('pt-BR')
 
 const nomeTarefa = [
     document.getElementById('nome_tarefa'),
@@ -75,6 +74,11 @@ const erroSemTitulo = [
     document.getElementById('erro_sem_titulo_edicao')
 ]
 
+const erroNotaVazia = [
+    document.getElementById('erro_nota_vazia'),
+    document.getElementById('erro_nota_vazia_edicao')
+]
+
 const pesquisaTarefas = [
     document.getElementById('pesquisar_abertas'),
     document.getElementById('pesquisar_concluidas')
@@ -86,3 +90,4 @@ const abrirCafe = document.getElementById('abrir_cafe')
 const cafeModal = document.getElementById('cafe_modal')
 const conteudoCafe = document.getElementById('conteudo_cafe')
 const calcularCafe = document.getElementById('calcular_cafe')
+const fecharCafe = document.getElementById('fechar_cafe')
