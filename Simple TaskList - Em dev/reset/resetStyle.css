@@ -1,0 +1,30 @@
+#reset {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+#modal_kabum {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#conteudo_kabum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: var(--cor-destaque);
+}
+
+#h1_kabum {
+    margin-bottom: 0px;
+}
+
+#h2_kabum {
+    margin-top: 0;
+    color: red;
+    font-weight: bolder;
+}

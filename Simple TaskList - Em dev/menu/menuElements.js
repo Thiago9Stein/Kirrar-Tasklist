@@ -1,0 +1,5 @@
+const menu = document.getElementById('menu')
+const abrirTarefas = document.getElementById('abrir_tarefas')
+const abrirTemas = document.getElementById('abrir_temas')
+const reset = document.getElementById('reset')
+const abrirCafe = document.getElementById('abrir_cafe')
