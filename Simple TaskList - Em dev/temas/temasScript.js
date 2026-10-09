@@ -1,5 +1,3 @@
-/*Modal Temas*/
-
 /*Cor fundo*/
 
 if (corFundoSalva) {
@@ -51,6 +49,48 @@ corDestaque.addEventListener('change', () => {
     document.documentElement.style.setProperty('--cor-destaque', corDestaque.value)
     localStorage.setItem('cor-destaque', corDestaque.value)
 })
+
+/*Escolha Baka*/
+
+function limparBaka () {
+    teto.style.display = 'none'
+    miku.style.display = 'none'
+    neru.style.display = 'none'
+}
+
+function mudarBakaMenu () {
+    if (escolhaBaka.value === 'Teto') {
+        limparBaka()
+        teto.style.display = 'flex'
+    } else if (escolhaBaka.value === 'Miku') {
+        limparBaka()
+        miku.style.display = 'flex'
+    } else {
+        limparBaka()
+        neru.style.display = 'flex'
+    }
+}
+
+const bakaSalva = localStorage.getItem('escolha-baka')
+
+let baka
+
+if (bakaSalva) {
+    baka = bakaSalva
+} else {
+    baka = 'Teto'
+}
+
+escolhaBaka.value = baka
+
+escolhaBaka.addEventListener('change', (event) => {
+    mudarBakaMenu()
+    localStorage.setItem('escolha-baka', escolhaBaka.value)
+})
+
+mudarBakaMenu()
+
+/*Tema padrão*/
 
 restaurarTemaPadrao.addEventListener('click', () => {
     localStorage.removeItem('cor-fundo')

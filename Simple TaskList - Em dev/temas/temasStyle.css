@@ -22,6 +22,11 @@
     color: var(--cor-destaque);
 }
 
+#escolha_baka {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
 #fechar_temas {
     position: absolute;
     right: 10px;

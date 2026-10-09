@@ -48,3 +48,14 @@
     font-weight: bold;
     z-index: 1;
 }
+
+/*Trible Baka Colors*/
+
+.middle,
+.drill_one,
+.drill_two,
+.ponytail_one,
+.ponytail_two,
+.single_ponytail {
+    background-color: var(--cor-destaque);
+}

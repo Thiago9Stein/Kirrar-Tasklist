@@ -4,7 +4,7 @@
 <head>
     <title>TaskList</title>
     <link rel="stylesheet" href="../standarts/padroes.css">
-    <link rel="stylesheet" href="../menu/tetoHair.css">
+    <link rel="stylesheet" href="../menu/tripleBakaHair.css">
     <link rel="stylesheet" href="../menu/menuStyle.css">
     <link rel="stylesheet" href="../tarefas/tarefasStyle.css">
     <link rel="stylesheet" href="../cafe/cafeStyle.css">
@@ -19,20 +19,23 @@
 
     <div id="menu" class="black_box">
 
-        <div class="teto_hair">
-            <div class="drill_one">
-
-            </div>
-
-            <div class="middle">
-
-            </div>
-
-            <div class="drill_two">
-
-            </div>
-
+        <div id="teto_hair">
+            <div class="drill_one"></div>
+            <div class="middle"></div>
+            <div class="drill_two"></div>
         </div>
+
+        <div id="miku_hair">
+            <div class="ponytail_one"></div>
+            <div class="middle"></div>
+            <div class="ponytail_two"></div>
+        </div>
+
+        <div id="neru_hair">
+            <div class="middle"></div>
+            <div class="single_ponytail"></div>
+        </div>
+
         <h1 id="titulo_modal">TaskList</h1>
         <button id="abrir_tarefas" class="botao_abrir">Abrir Tarefas</button>
         <button id="abrir_temas" class="botao_abrir">Personalizar Tema</button>
@@ -55,7 +58,17 @@
                 <input type="color" id="cor_fechar">
                 <label for="cor_destaque">Cor de Destaque:</label>
                 <input type="color" id="cor_destaque">
-                <button id="restaurar_tema_padrao" class="botao_abrir">Restaurar Cores Padrão</button>
+
+                <label for="escolha_baka">Escolha sua Baka:</label>
+                <select id="escolha_baka">
+                    <option value="Teto">Kasane Teto</option>
+                    <option value="Miku">Hatsune Miku</option>
+                    <option value="Neru">Akita Neru</option>
+                </select>
+
+                <button id="restaurar_tema_padrao" class="botao_abrir">Restaurar tema Padrão</button>
+            
+
             </div>
 
         </div>
