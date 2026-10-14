@@ -1,6 +1,7 @@
 let tarefaId = 1
 let tarefaAtual
 const tarefas = []
+const tarefasExcluir = []
 
 /*Salvamento local das tarefas*/
 
@@ -93,6 +94,11 @@ function exibirTarefa(tarefa, listaDestino){
     const linha = document.createElement('div')
     linha.classList.add('linha_tarefa')
     
+    const check = document.createElement('span')
+    const checkbox = document.createElement('input')
+    checkbox.type = 'checkbox'
+    check.appendChild(checkbox)
+
     const id = document.createElement('span')
     id.classList.add('id_tarefa')
 
@@ -112,6 +118,11 @@ function exibirTarefa(tarefa, listaDestino){
     editar.classList.add('botao_editar')
     acoes.appendChild(editar)
 
+    const copiar = document.createElement('button')
+    copiar.textContent = "❐"
+    copiar.classList.add('botao_editar')
+    acoes.appendChild(copiar)
+
     const excluir = document.createElement('button')
     excluir.textContent = "✕"
     excluir.classList.add('botao_excluir')
@@ -124,6 +135,7 @@ function exibirTarefa(tarefa, listaDestino){
     prioridade.textContent = tarefa.prioridade
     status.textContent = tarefa.status
 
+    linha.appendChild(check)
     linha.appendChild(id)
     linha.appendChild(titulo)
     linha.appendChild(prioridade)
@@ -154,6 +166,17 @@ function exibirTarefa(tarefa, listaDestino){
         }, {once: true})
     })
 
+    copiar.addEventListener ('click', (event) => {
+        tarefaAtual = tarefa
+
+        confirmarCopiaModal.classList.add('fade-in')
+        confirmarCopiaModal.style.display = 'flex'
+
+        confirmarCopiaModal.addEventListener('animationend', (event) => {
+            confirmarCopiaModal.classList.remove('fade-in')
+        }, {once: true})
+    })
+
     excluir.addEventListener ('click', (event) => {
         tarefaAtual = tarefa
 
@@ -165,6 +188,90 @@ function exibirTarefa(tarefa, listaDestino){
 
             confirmarExclusaoTarefa.classList.remove('fade-in')
         }, {once: true})
+    })
+
+    checkbox.addEventListener ('change', () => {
+        alternarCheck(tarefa, checkbox)
+    })
+}
+
+confirmarCopia.addEventListener('click', (event) => {
+    const copiaTarefa = structuredClone(tarefaAtual)
+    
+    copiaTarefa.tarefaId = tarefaId
+    tarefaId++
+
+    tarefas.push(copiaTarefa)
+
+    salvarTarefas()
+    localStorage.setItem('tarefaId', tarefaId)
+
+    reordenarListas(tarefas)
+    buscarDadosTarefas(tarefas)
+    fecharConfirmarCopia()
+})
+
+function alternarCheck (tarefa, checkbox) {
+    const idAtual = tarefa.tarefaId
+
+    if (checkbox.checked) {
+        if (!tarefasExcluir.includes(idAtual)) {
+            tarefasExcluir.push(idAtual)
+        }
+
+    } else {
+        const indiceTarefa = tarefasExcluir.findIndex(id => id === idAtual)
+
+        if (indiceTarefa !== -1) {
+            tarefasExcluir.splice(indiceTarefa, 1)
+        }
+    }
+    alternarBotaoExclusaoLote()
+}
+
+excluirTudo.addEventListener('click', (event) => {
+    confirmarExclusaoLoteModal.classList.add('fade-in')
+    confirmarExclusaoLoteModal.style.display = 'flex'
+
+    confirmarExclusaoLoteModal.addEventListener('animationend', (event) => {
+        confirmarExclusaoLoteModal.classList.remove('fade-in')
+    }, {once: true})
+})
+
+confirmarExclusaoLote.addEventListener('click', (event) => {
+    for (let i = 0; i < tarefasExcluir.length; i++) {
+        const indiceTarefa = tarefas.findIndex(tarefa => tarefa.tarefaId === tarefasExcluir[i])
+        if (indiceTarefa !== -1) {
+            tarefas.splice(indiceTarefa, 1)
+        }
+    }
+    salvarTarefas()
+    reordenarListas(tarefas)
+    buscarDadosTarefas(tarefas)
+    
+    tarefasExcluir.length = 0
+
+    alternarBotaoExclusaoLote()
+    fecharExclusaoLote()
+})
+
+for (let i = 0; i < selectTarefas.length; i++) {
+    const checkboxCabecalho = selectTarefas[i].querySelector('input[type="checkbox"]')
+
+    checkboxCabecalho.addEventListener('change', (event) => {
+        const linhasTarefas = listaLinhasTarefas[i].querySelectorAll('.linha_tarefa')
+
+        for (let l = 0; l < linhasTarefas.length; l++) {
+            const checkboxLinha = linhasTarefas[l].querySelector('input[type="checkbox"]')
+            const tarefaEncontrada = tarefas.find(tarefa => tarefa.tarefaId == linhasTarefas[l].id)
+
+            if (checkboxCabecalho.checked) {
+                checkboxLinha.checked = true
+            } else {
+                checkboxLinha.checked = false
+            }
+            alternarCheck(tarefaEncontrada, checkboxLinha)
+        }
     })
 }
 
@@ -179,6 +286,7 @@ confirmarExclusaoTarefa.addEventListener ('click', (event) => {
 
     salvarTarefas()
     reordenarListas(tarefas)
+    buscarDadosTarefas(tarefas)
 
     fecharConfirmarExclusao()
 })
@@ -297,7 +405,9 @@ function salvarEdicaoTarefa () {
 
     salvarTarefas()
 
-    reordenarListas (tarefas)
+    reordenarListas(tarefas)
+    buscarDadosTarefas(tarefas)
+    limparPesquisas()
 }
 
 salvarEdicao.addEventListener('click', () => {
@@ -309,6 +419,7 @@ salvarEdicao.addEventListener('click', () => {
     salvarEdicaoTarefa()
 
     fecharTarefaCadastradaModal()
+
 
     const tarefaSalvaMensagem = document.createElement('div')
     tarefaSalvaMensagem.classList.add('confirmacao','fade-in')
@@ -371,3 +482,10 @@ for (let i = 0; i < pesquisaTarefas.length; i++) {
 }
 
 reordenarListas(tarefas)
+
+function limparPesquisas () {
+    for (let i = 0; i < pesquisaTarefas.length; i++) {
+        pesquisaTarefas[i].value = ''
+    }
+    reordenarListas(tarefas)
+}

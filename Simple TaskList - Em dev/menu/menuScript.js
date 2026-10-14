@@ -1,4 +1,5 @@
 abrirTarefas.addEventListener('click', () => {
+    buscarDadosTarefas(tarefas)
     tarefasModal.style.display = 'flex'
     tarefasModal.classList.add('fade-in')
 
@@ -31,5 +32,14 @@ abrirCafe.addEventListener('click', (event) => {
 
     cafeModal.addEventListener('animationend', (event) => {
         cafeModal.classList.remove('fade-in')
+    }, {once: true})
+})
+
+exportacao.addEventListener('click', (event) => {
+    exportacaoModal.classList.add('fade-in')
+    exportacaoModal.style.display = 'flex'
+
+    exportacaoModal.addEventListener('animationend', (event) => {
+        exportacaoModal.classList.remove('fade-in')
     }, {once: true})
 })

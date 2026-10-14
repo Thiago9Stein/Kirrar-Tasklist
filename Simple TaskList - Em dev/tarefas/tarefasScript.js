@@ -1,4 +1,5 @@
 let intervalo
+
 function pegarTempo () {
     const dataAtual = new Date().toLocaleDateString('pt-BR')
     const horaAtual = new Date().toLocaleTimeString('pt-BR')
@@ -24,6 +25,39 @@ function esconderListaAbertas () {
 function esconderListaConcluidas () {
     tarefasConcluidas.style.height = '0px'
     setaConcluidas.classList.remove('aberta')
+}
+
+function calcularTarefasAbertas (tarefas) {
+
+    const tarefasQuantia = tarefas.filter((tarefa) => {
+        return tarefa.status === 'Novo'
+    })
+
+    quantiaTarefasAbertas.textContent = `${tarefasQuantia.length}`
+}
+
+
+function calcularTarefasExecucao (tarefas) {
+    const tarefasQuantia = tarefas.filter((tarefa) => {
+        return tarefa.status === 'Executando'
+    })
+
+    quantiaTarefasExecucao.textContent = `${tarefasQuantia.length}`
+}
+
+function calcularTarefasFinalizadas(tarefas) {
+    const tarefasQuantia = tarefas.filter((tarefa) => {
+        return tarefa.status === 'Finalizado'
+    })
+
+    quanatiaTarefasFinalizadas.textContent = `${tarefasQuantia.length}`
+}
+
+function buscarDadosTarefas (tarefas) {
+    quantiaTarefasTotais.textContent = `${tarefas.length}`
+    calcularTarefasAbertas(tarefas)
+    calcularTarefasExecucao(tarefas)
+    calcularTarefasFinalizadas(tarefas)
 }
 
 expandirTarefasAbertas.addEventListener('click', () => {
@@ -59,6 +93,7 @@ function fecharTarefasModal () {
         tarefasModal.style.display = 'none'
         esconderListaAbertas()
         esconderListaConcluidas()
+        limparPesquisas()
     }, {once: true} )
 }
 
@@ -116,7 +151,7 @@ function fecharCadastroTarefaModal () {
         cadastroTarefaModal.style.display = 'none'
         limparCadastroModal()
         alternarEscolhaNotaInicial()
-
+        limparPesquisas()
     }, {once: true})
 }
 
@@ -223,6 +258,47 @@ confirmarExclusaoTarefaModal.addEventListener ('click', (event) => {
     }
 })
 
+cancelarExclusaoLote.addEventListener ('click', (event) => {
+    fecharExclusaoLote()
+})
+
+confirmarExclusaoLoteModal.addEventListener('click', (event) => {
+    if(event.target === confirmarExclusaoLoteModal) {
+        fecharExclusaoLote()
+    }
+})
+
+cancelarCopia.addEventListener('click', (event) => {
+    fecharConfirmarCopia()
+})
+
+confirmarCopiaModal.addEventListener('click', (event) => {
+    if (event.target === confirmarCopiaModal) {
+        fecharConfirmarCopia()
+    }
+})
+
+function alternarBotaoExclusaoLote () {
+    if (tarefasExcluir.length >= 1) {
+        excluirTudo.style.display = 'block'
+    } else {
+        excluirTudo.style.display = 'none'
+    }
+}
+
+function fecharConfirmarCopia () {
+    confirmarCopiaModal.classList.add('fade-out')
+
+    confirmarCopiaModal.addEventListener('animationend', (event) => {
+        if (event.animationName !== 'fadeOut') return
+
+        confirmarCopiaModal.classList.remove('fade-out')
+        confirmarCopiaModal.style.display = 'none'
+
+        limparPesquisas()
+    }, {once: true})
+}
+
 function fecharConfirmarExclusao () {
     confirmarExclusaoTarefaModal.classList.add('fade-out')
 
@@ -231,6 +307,21 @@ function fecharConfirmarExclusao () {
 
         confirmarExclusaoTarefaModal.classList.remove('fade-out')
         confirmarExclusaoTarefaModal.style.display = 'none'
+
+        limparPesquisas()
+    }, {once: true})
+}
+
+function fecharExclusaoLote () {
+    confirmarExclusaoLoteModal.classList.add('fade-out')
+
+    confirmarExclusaoLoteModal.addEventListener('animationend', (event) => {
+        if (event.animationName !== 'fadeOut') return
+        
+        confirmarExclusaoLoteModal.classList.remove('fade-out')
+        confirmarExclusaoLoteModal.style.display = 'none'
+
+        limparPesquisas()
     }, {once: true})
 }
 
@@ -245,7 +336,7 @@ function fecharTarefaCadastradaModal () {
         tarefaCadastradaModal.style.display = 'none'
 
         cancelarNotaEdicao()
-
+        limparPesquisas()
     }, {once: true})
 }
 

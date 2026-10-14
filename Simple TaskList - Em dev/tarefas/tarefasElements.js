@@ -8,6 +8,16 @@ const expandirTarefasAbertas = document.getElementById('expandir_tarefas_abertas
 const expandirTarefasConcluidas = document.getElementById('expandir_tarefas_concluidas')
 const tarefasAbertas = document.getElementById('tarefas_abertas')
 const tarefasConcluidas = document.getElementById('tarefas_concluidas')
+const quantiaTarefasTotais = document.getElementById('quantia_tarefas_totais')
+const quantiaTarefasAbertas = document.getElementById('quantia_tarefas_abertas')
+const quantiaTarefasExecucao = document.getElementById('quantia_tarefas_execucao')
+const quanatiaTarefasFinalizadas = document.getElementById('quantia_tarefas_finalizadas')
+const excluirTudo = document.getElementById('excluir_tudo')
+
+const selectTarefas = [
+    document.getElementsByClassName('select_tarefas')[0],
+    document.getElementsByClassName('select_tarefas')[1]
+]
 
 const listaLinhasTarefas = [
     document.getElementsByClassName('lista_linhas_tarefas')[0],
@@ -78,8 +88,17 @@ const dataCriacaoNota = document.getElementById('data_criacao_nota')
 const telaHistorico = document.getElementById('tela_historico')
 const telaCadastroNota = document.getElementById('tela_cadastro_nota')
 
+/*Confirmar cópia de tarefa*/
+
+const confirmarCopiaModal = document.getElementById('confirmar_copia_modal')
+const cancelarCopia = document.getElementById('cancelar_copia')
+const confirmarCopia = document.getElementById('confirmar_copia')
+
 /*Confirmação de Exclusão de Tarefa*/
 
 const confirmarExclusaoTarefaModal = document.getElementById('confirmar_exclusao_tarefa_modal')
 const cancelarExclusaoTarefa = document.getElementById('cancelar_exclusao_tarefa')
 const confirmarExclusaoTarefa = document.getElementById('confirmar_exclusao_tarefa')
+const confirmarExclusaoLoteModal = document.getElementById('confirmar_exclusao_lote_modal')
+const cancelarExclusaoLote = document.getElementById('cancelar_exclusao_lote')
+const confirmarExclusaoLote = document.getElementById('confirmar_exclusao_lote')

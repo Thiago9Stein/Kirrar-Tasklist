@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../cafe/cafeStyle.css">
     <link rel="stylesheet" href="../reset/resetStyle.css">
     <link rel="stylesheet" href="../temas/temasStyle.css">
+    <link rel="stylesheet" href="../exportacao/exportacaoStyle.css">
 
     <link rel="icon" href="../standarts/tasklist_icon.png" type="image/png">
 </head>
@@ -41,6 +42,8 @@
         <button id="abrir_temas" class="botao_abrir">Personalizar Tema</button>
         <button id="abrir_cafe">♕Café♕</button>
         <button id="reset" class="botao_cancelar">Resetar site</button>
+        <button id="exportacao" class="botao_abrir">Importação/Exportação</button>
+
     </div>
 
     <div id="temas_modal" class="black_box">
@@ -67,7 +70,7 @@
                 </select>
 
                 <button id="restaurar_tema_padrao" class="botao_abrir">Restaurar tema Padrão</button>
-            
+
 
             </div>
 
@@ -79,7 +82,27 @@
 
         <div id="conteudo_tarefas" class="white_box">
             <h1 id="titulo_tarefas">Tarefas</h1>
+
+            <div id="dados_tarefas">
+                <span class="resumo">Total de tarefas
+                    <span id="quantia_tarefas_totais">0</span>
+                </span>
+
+                <span class="resumo">Tarefas novas
+                    <span id="quantia_tarefas_abertas">0</span>
+                </span>
+
+                <span class="resumo">Tarefas em execução
+                    <span id="quantia_tarefas_execucao">0</span>
+                </span>
+
+                <span class="resumo">Tarefas Finalizadas
+                    <span id="quantia_tarefas_finalizadas">0</span>
+                </span>
+            </div>
+
             <button id="fechar_tarefas" class="botao_fechar">✕</button>
+
 
             <div id="lista_tarefas">
                 <div class="coluna_tarefas">
@@ -89,6 +112,9 @@
                     <div id="tarefas_abertas" class="conteudo_expandido">
                         <input id="pesquisar_abertas" type="text" placeholder="Pesquisar tarefa..">
                         <div class="cabecalho_tarefas">
+                            <span class="select_tarefas">
+                                <input type="checkbox">
+                            </span>
                             <span id="tarefa_id">ID</span>
                             <span class="titulo_tarefa">Título</span>
                             <span class="prioridade_tarefa">Prioridade</span>
@@ -107,6 +133,9 @@
                     <div id="tarefas_concluidas" class="conteudo_expandido">
                         <input id="pesquisar_concluidas" type="text" placeholder="Pesquisar tarefa...">
                         <div class="cabecalho_tarefas">
+                            <span class="select_tarefas">
+                                <input type="checkbox">
+                            </span>
                             <span>ID</span>
                             <span>Título</span>
                             <span>Prioridade</span>
@@ -119,7 +148,10 @@
                 </div>
             </div>
 
-            <button id="nova_tarefa" class="botao_confirmar">Nova Tarefa +</button>
+            <div id="alinhamento_botoes_tarefa">
+                <button id="excluir_tudo" class="botao_cancelar">Excluir tarefas</button>
+                <button id="nova_tarefa" class="botao_confirmar">Nova Tarefa +</button>
+            </div>
         </div>
     </div>
 
@@ -155,7 +187,7 @@
                     <h1>Informações da Tarefa</h1>
                     <label for="nome_tarefa_edicao">Título da tarefa</label>
                     <input type="text" id="nome_tarefa_edicao" maxlength="50">
-                    <p id="erro_sem_titulo_edicao" class="erro">Não é possível cadastrar uma tarefa sem título!</p>
+                    <p id="erro_sem_titulo_edicao" class="erro">Não é possível salvar uma tarefa sem título!</p>
                     <label for="prioridade_tarefa_edicao">Prioridade</label>
                     <select id="prioridade_tarefa_edicao">
                         <option value="Baixa">Baixa</option>
@@ -196,12 +228,36 @@
         </div>
     </div>
 
+    <div id="confirmar_copia_modal" class="black_box">
+        <div id="confirmar_copia_conteudo" class="white_box">
+            <h1 class="titulo_confirmar_copia">Deseja copíar essa tarefa?</h1>
+            <div class="alinhamento_botoes">
+                <button id="cancelar_copia" class="botao_cancelar">Cancelar cópia</button>
+                <button id="confirmar_copia" class="botao_confirmar">Confirmar cópia</button>
+            </div>
+        </div>
+    </div>
+
     <div id="confirmar_exclusao_tarefa_modal" class="black_box">
         <div id="confirmar_exclusao_tarefa_conteudo" class="white_box">
-            <h1 id="titulo_confirmar_exclusao">Tem certeza que deseja excluir a tarefa?</h1>
-            <div id="alinhamento_botoes">
+            <h1 class="titulo_confirmar_exclusao">Tem certeza que deseja excluir a tarefa?</h1>
+            <h2 class="aviso_confirmar_exclusao">Essa ação NÃO PODE SER DESFEITA!</h2>
+
+            <div class="alinhamento_botoes">
                 <button id="cancelar_exclusao_tarefa" class="botao_confirmar">Cancelar exclusão</button>
                 <button id="confirmar_exclusao_tarefa" class="botao_cancelar">Excluir tarefa</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmar_exclusao_lote_modal" class="black_box">
+        <div id="confirmar_exclusao_lote_conteudo" class="white_box">
+            <h1 class="titulo_confirmar_exclusao">Deseja realmente exluir TODAS as tarefas selecionadas?</h1>
+            <h2 class="aviso_confirmar_exclusao">Essa ação NÃO PODE SER DESFEITA!</h2>
+
+            <div class="alinhamento_botoes">
+                <button id="cancelar_exclusao_lote" class="botao_confirmar">Cancelar exclusão</button>
+                <button id="confirmar_exclusao_lote" class="botao_cancelar">Confirmar exclusão</button>
             </div>
         </div>
     </div>
@@ -223,6 +279,14 @@
         </div>
     </div>
 
+    <div id="exportacao_modal" class="black_box">
+        <div id="exportacao_conteudo" class="white_box">
+            <button id="fechar_exportacao" class="botao_fechar">✕</button>
+            <button id="exportar" class="botao_abrir">Exportar tarefas</button>
+            <button id="importar" class="botao_abrir">Importar tarefas</button>
+        </div>
+    </div>
+
     <footer>
         <p>Made by Kayane Kirrar</p>
     </footer>
@@ -235,9 +299,9 @@
 
 <!-- Tarefas -->
 <script src="../tarefas/tarefasElements.js"></script>
-<script src="../tarefas/tarefasScript.js"></script>
 <script src="../tarefas/tarefas.js"></script>
 <script src="../tarefas/cadastroTarefa.js"></script>
+<script src="../tarefas/tarefasScript.js"></script>
 
 <!-- Temas -->
 <script src="../temas/temasElements.js"></script>
@@ -250,5 +314,9 @@
 <!-- Reset -->
 <script src="../reset/resetElements.js"></script>
 <script src="../reset/resetScript.js"></script>
+
+<!-- Exportação -->
+<script src="../exportacao/exportacaoElements.js"></script>
+<script src="../exportacao/exportacaoScript.js"></script>
 
 </html>

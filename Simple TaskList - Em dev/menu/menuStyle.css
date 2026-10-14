@@ -49,6 +49,17 @@
     z-index: 1;
 }
 
+#reset {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+
+#exportacao {
+    position: absolute;
+    bottom: 5px;
+}
+
 /*Trible Baka Colors*/
 
 .middle,
