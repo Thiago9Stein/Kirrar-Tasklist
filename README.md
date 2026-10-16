@@ -21,7 +21,7 @@ Abra o arquivo index.html em um navegador.
 
 #Funcionamento geral do projeto
 
->>Tarefas
+ 1. Tarefas
 
 O usuário pode acessar o container de tarefas, onde será mostrado:
 
@@ -65,7 +65,7 @@ Após a criação, o usuário possui as seguintes opções:
 - O usuário também tem a possibilidade de excluir tarefas em lote a partir da marcação do checkbox à esquerda, e então selecionar uma opção dedicada à exclusão em lote
 - Após excluir uma ou mais tarefas, a ação NÃO pode ser desfeita
 
->> Temas
+ 2. Temas
 
 O usuário pode fazer a alteração das cores do programa caso preferir
 As possibilidades de customização incluem:
@@ -77,7 +77,7 @@ As possibilidades de customização incluem:
 
 Caso o usuário deseje voltar às cores padrões, existe a opção dedicada para essa ação
 
->> Reset
+ 3. Reset
 
 O usuário tem a possibilidade de reiniciar todos os dados da aplicação
 
@@ -86,7 +86,7 @@ Ao confirmar a ação:
 - Todas as tarefas serão apagadas, sem possibilidade de recuperação após finalizar a ação
 - O ID será reiniciado para 1
 
->> Exportação/Importação
+ 4. Exportação/Importação
 
 Permite o usuário fazer a exportação/importação de suas tarefas
 
