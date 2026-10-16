@@ -1,0 +1,4 @@
+const exportacaoModal = document.getElementById('exportacao_modal')
+const exportar = document.getElementById('exportar')
+const importar = document.getElementById('importar')
+const fecharExportacao = document.getElementById('fechar_exportacao')
