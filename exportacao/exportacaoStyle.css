@@ -1,0 +1,48 @@
+#exportacao_modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#exportacao_conteudo {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 35%;
+    width: 35%;
+
+    gap: 10px;
+}
+
+#descricao_exportacao {
+    font-size: 20px;
+    color: var(--cor-destaque);
+    margin-bottom: 0;
+}
+
+#confirmacao_importacao {
+    display: none;
+    margin-left: 0;
+    color: var(--cor-confirmar);
+}
+
+#fechar_exportacao {
+    position: absolute;
+
+    top: 5px;
+    right: 5px;
+
+    height: 30px;
+    width: 30px;
+    font-size: 15px;
+}
+
+@media (max-width: 430px) {
+    #exportacao_conteudo {
+        height: 45%;
+        width: 90%;
+    }
+}
